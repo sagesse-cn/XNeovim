@@ -11,7 +11,10 @@
 @implementation XNeovimServiceString (Bridge)
 
 - (String)nString {
-        return (String) { .data = (char *) self.contents.UTF8String, .size = strlen(self.contents.UTF8String) };
+    return (String) {
+        .data = (char*)self.contents.UTF8String,
+        .size = (int)strlen(self.contents.UTF8String)
+    };
 }
 
 @end

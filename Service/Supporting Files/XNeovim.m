@@ -16,7 +16,7 @@ typedef struct {
     bool stop;
 } ServerUiData;
 
-static ServerUiData *_server_ui_data;
+//static ServerUiData *_server_ui_data;
 
 
 //// Condition variable used by the XPC's init to wait till our custom UI initialization
@@ -186,7 +186,7 @@ static void server_ui_highlight_set(UI *ui __unused, HlAttrs attrs) {
 }
 
 static void server_ui_put(UI *ui __unused, String str) {
-    //NSLog(@"%s %s", __func__, str.data);
+//    NSLog(@"%s %s", __func__, str.data);
     //    NSString *string = [[NSString alloc] initWithBytes:str.data
     //                                                length:str.size
     //                                              encoding:NSUTF8StringEncoding];
@@ -313,8 +313,8 @@ static void server_ui_set_icon(UI *ui __unused, String icon) {
 static void server_ui_stop(UI *ui __unused) {
     //    [_neovim_server sendMessageWithId:NeoVimServerMsgIdStop];
     
-    ServerUiData *data = (ServerUiData *) ui->data;
-    data->stop = true;
+//    ServerUiData *data = (ServerUiData *) ui->data;
+//    data->stop = true;
 }
 
 #pragma mark Public
@@ -432,23 +432,23 @@ dispatch_queue_t xnvim_service_main_queue() {
 }
 
 
-void xnvim_service_dispatch_imp(void **argv) {
+void xnvim_dispatch_imp(void **argv) {
     ((__bridge_transfer dispatch_block_t)*argv)();
 }
 
-void xnvim_service_sync(dispatch_block_t block) {
+void xnvim_dispatch_sync(dispatch_block_t block) {
     dispatch_sync(xnvim_service_main_queue(), ^{
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        loop_schedule(&main_loop, event_create(xnvim_service_dispatch_imp, 1, (__bridge_retained void*)^{
+        loop_schedule(&main_loop, event_create(xnvim_dispatch_imp, 1, (__bridge_retained void*)^{
             block();
             dispatch_semaphore_signal(semaphore);
         }));
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     });
 }
-void xnvim_service_async(dispatch_block_t block) {
+void xnvim_dispatch_async(dispatch_block_t block) {
     dispatch_async(xnvim_service_main_queue(), ^{
-        loop_schedule(&main_loop, event_create(xnvim_service_dispatch_imp, 1, (__bridge_retained void*)block));
+        loop_schedule(&main_loop, event_create(xnvim_dispatch_imp, 1, (__bridge_retained void*)block));
     });
 }
 

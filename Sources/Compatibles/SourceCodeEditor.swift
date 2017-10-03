@@ -96,7 +96,7 @@ internal class SourceEditorView: NSView {
     }
     
     @objc dynamic func xvim_selectionDidChange(_ notification: Notification) {
-        guard let _ = xvim_window else {
+        guard let window = xvim_window else {
             return 
         }
         
@@ -104,15 +104,22 @@ internal class SourceEditorView: NSView {
         let start = selection.lowerBound
         let end = selection.upperBound
         
-        let sl = contentView.accessibilityLine(for: start)
-        let el = contentView.accessibilityLine(for: end)
+        guard start != NSNotFound else {
+            return
+        }
         
-        let sp = start - contentView.accessibilityRange(forLine: sl).lowerBound
-        let ep = end - contentView.accessibilityRange(forLine: el).lowerBound
+        let srow = contentView.accessibilityLine(for: start)
+        let srange = contentView.accessibilityRange(forLine: srow)
+        let scolumn = max(min(start - srange.lowerBound, srange.length - 2), 0)
+
+        let erow = contentView.accessibilityLine(for: end)
+        let erange = contentView.accessibilityRange(forLine: erow)
+        let ecolumn = max(min(end - erange.lowerBound, erange.length - 2), 0)
         
-        logger.debug?.write("\(sl):\(sp) -> \(el):\(ep)")
+        logger.debug?.write("\(srow + 1):\(scolumn) -> \(erow + 1):\(ecolumn)")
         
         //setAccessibilitySelectedTextRange
+        window.service.setCursor(srow + 1, column: scolumn)
     }
     
 //    @objc dynamic func xvim_insertText(_ text: Any) {

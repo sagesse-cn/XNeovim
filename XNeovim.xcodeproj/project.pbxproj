@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0C13CE541F8086520014AF7B /* runtime in Resources */ = {isa = PBXBuildFile; fileRef = 0C13CE521F8086450014AF7B /* runtime */; };
 		0C6289601F83A57200A57EED /* SourceCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C62895F1F83A57200A57EED /* SourceCodeEditor.swift */; };
+		0C7735F91F84251400EF582E /* xcode.vim in Resources */ = {isa = PBXBuildFile; fileRef = 0C7735F81F84251400EF582E /* xcode.vim */; };
+		0C7735FB1F8427C200EF582E /* xcode.vim in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0C7735F81F84251400EF582E /* xcode.vim */; };
 		0C7D3CE21F80B24500D26CB3 /* IDEKit in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7D3CE11F80B24000D26CB3 /* IDEKit */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C7D3CE41F80B2D200D26CB3 /* IDESourceEditor in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7D3CE31F80B2C400D26CB3 /* IDESourceEditor */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C7D3CE61F80B5F400D26CB3 /* DVTFoundation in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7D3CE51F80B5F100D26CB3 /* DVTFoundation */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -57,6 +59,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		0C7735FA1F8427B900EF582E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = runtime/plugin;
+			dstSubfolderSpec = 7;
+			files = (
+				0C7735FB1F8427C200EF582E /* xcode.vim in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0CB104C81EEFF589002CB7FA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -73,6 +85,7 @@
 /* Begin PBXFileReference section */
 		0C13CE521F8086450014AF7B /* runtime */ = {isa = PBXFileReference; lastKnownFileType = folder; name = runtime; path = neovim/runtime; sourceTree = "<group>"; };
 		0C62895F1F83A57200A57EED /* SourceCodeEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceCodeEditor.swift; sourceTree = "<group>"; };
+		0C7735F81F84251400EF582E /* xcode.vim */ = {isa = PBXFileReference; lastKnownFileType = text; path = xcode.vim; sourceTree = "<group>"; };
 		0C7D3CE11F80B24000D26CB3 /* IDEKit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = IDEKit; path = ../Frameworks/IDEKit.framework/Versions/A/IDEKit; sourceTree = DEVELOPER_DIR; };
 		0C7D3CE31F80B2C400D26CB3 /* IDESourceEditor */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = IDESourceEditor; path = ../PlugIns/IDESourceEditor.ideplugin/Contents/MacOS/IDESourceEditor; sourceTree = DEVELOPER_DIR; };
 		0C7D3CE51F80B5F100D26CB3 /* DVTFoundation */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = DVTFoundation; path = ../SharedFrameworks/DVTFoundation.framework/Versions/A/DVTFoundation; sourceTree = DEVELOPER_DIR; };
@@ -169,6 +182,7 @@
 		0C8F7B341F822E76006C356E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0C7735F81F84251400EF582E /* xcode.vim */,
 				0C98367A1F82AAFE0047E699 /* XNeovim.h */,
 				0C98367B1F82AB730047E699 /* XNeovim.m */,
 				0C8F7B371F822E77006C356E /* Info.plist */,
@@ -343,6 +357,7 @@
 				0CDE277D1F802CB4005D4E3C /* Frameworks */,
 				0CDE277E1F802CB4005D4E3C /* Headers */,
 				0CDE277F1F802CB4005D4E3C /* Resources */,
+				0C7735FA1F8427B900EF582E /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -424,6 +439,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C7735F91F84251400EF582E /* xcode.vim in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,7 +457,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
+			shellPath = "/bin/sh -e";
 			shellScript = "pushd \"${SRCROOT}/Service/neovim\"\n\n# We assume that we're already in the neovim project root\nmake CFLAGS='-mmacosx-version-min=10.10' MACOSX_DEPLOYMENT_TARGET=10.10 CMAKE_EXTRA_FLAGS=\"-DGETTEXT_SOURCE=CUSTOM\" libnvim\n\n#/bin/sh ../build/generate_source.py\npopd\n";
 		};
 /* End PBXShellScriptBuildPhase section */

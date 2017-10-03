@@ -28,4 +28,6 @@ FOUNDATION_EXPORT const unsigned char XNeovimServiceVersionString[];
 - (void)command:(XNeovimServiceString* _Nonnull)command;
 - (void)feedkeys:(XNeovimServiceString* _Nonnull)keys;
 
+- (void)setCursor:(NSInteger)row column:(NSInteger)column;
+
 @end

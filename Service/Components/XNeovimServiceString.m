@@ -10,51 +10,9 @@
 
 #import "XNeovimServiceString.h"
 
-NSString* xns_special_to_name(int key);
-NSString* xns_modifier_to_name(NSEventModifierFlags modifier);
-
-//FOUNDATION_STATIC_INLINE NSString* XNeovimServiceStringEventModifierFlags(NSEventModifierFlags modifierFlags) {
-//
-//    NSMutableString* result = NSMutableString.new;
-//    
-//    if (modifierFlags & NSEventModifierFlagControl) {
-//        [result appendString:@"C-"];
-//    }
-//    
-//    if (modifierFlags & NSEventModifierFlagOption) {
-//        [result appendString:@"M-"];
-//    }
-//
-//    if (modifierFlags & NSEventModifierFlagCommand) {
-//        [result appendString:@"D-"];
-//    }
-//
-//    if (modifierFlags & NSEventModifierFlagShift) {
-//        [result appendString:@"S-"];
-//    }
-//    
-//    if (result.length == 0) {
-//        result = nil;
-//    }
-//
-//    return result;
-//}
-//FOUNDATION_STATIC_INLINE NSString* XNeovimServiceStringEncoding(NSString* characters) {
-//    
-//    if (characters.length == 0) {
-//        return characters;
-//    }
-//    
-//    static struct {
-//        int key;
-//        char* name;
-//    } mapping[] = {
-//    };
-//    
-
-//
-//    return characters;
-//}
+NSString* xnvim_plain_to_str(NSString* string);
+NSString* xnvim_special_to_name(int key);
+NSString* xnvim_modifier_to_name(NSEventModifierFlags modifier);
 
 @implementation XNeovimServiceString {
     NSString* _contents;
@@ -62,25 +20,27 @@ NSString* xns_modifier_to_name(NSEventModifierFlags modifier);
 
 - (instancetype)initWithEvent:(NSEvent*)event {
     
-    //
-    if (event.charactersIgnoringModifiers.length == 0) {
-        return nil;
+    // Invaild input event.
+    if ([event.charactersIgnoringModifiers length] == 0) {
+        return [self initWithString:@""];
     }
     
-//    NSString* special = xns_special_to_name([event.charactersIgnoringModifiers characterAtIndex:0]);
-//    NSString* flag = xns_modifier_to_name([event modifierFlags]);
-//
-////    NSLog(@"%s, %@%@", __func__, flag, special);
+    // Convert VIM support string.
+    NSString* flags = xnvim_modifier_to_name([event modifierFlags]) ?: @"";
+    NSString* special = xnvim_special_to_name([event.charactersIgnoringModifiers characterAtIndex:0]);
+    NSString* characters = xnvim_plain_to_str([event characters]) ?: @"";
     
-    NSString* string = event.characters;
+    if (special.length != 0) {
+        characters = [NSString stringWithFormat:@"<%@%@>", flags, special];
+    }
     
-    return [self initWithPlain:string];
+//    NSLog(@"%s %@", __func__, characters);
+    
+    return [self initWithString:characters];
 }
 
 - (instancetype)initWithPlain:(NSString*)string {
-    string = [string stringByReplacingOccurrencesOfString:@"<" withString:@"\\<"];
-    
-    return [self initWithString:string];
+    return [self initWithString:xnvim_plain_to_str(string)];
 }
 
 - (instancetype)initWithString:(NSString*)string {
@@ -92,14 +52,6 @@ NSString* xns_modifier_to_name(NSEventModifierFlags modifier);
 - (NSString*)contents {
     return _contents;
 }
-//}
-//- (instancetype)initWithPlain:(NSString*)string {
-//    
-//}
-//
-//+ (Class)class {
-//    return NSString.class;
-//}
 
 @end
 
@@ -157,7 +109,11 @@ static struct { int k; char* n; } _key_name_table[] = {
 	{ 0x19, "Tab"}
 };
 
-NSString* xns_special_to_name(int key) {
+NSString* xnvim_plain_to_str(NSString* string) {
+    return [string stringByReplacingOccurrencesOfString:@"<" withString:@"<lt>"];
+}
+
+NSString* xnvim_special_to_name(int key) {
     for (int i = sizeof(_key_name_table) / sizeof(*_key_name_table); i-- > 0 ; /* empty */) {
         if (_key_name_table[i].k == key) {
             return @(_key_name_table[i].n);
@@ -166,7 +122,7 @@ NSString* xns_special_to_name(int key) {
     return nil;
 }
 
-NSString* xns_modifier_to_name(NSEventModifierFlags modifier) {
+NSString* xnvim_modifier_to_name(NSEventModifierFlags modifier) {
     NSMutableString* name = [NSMutableString stringWithCapacity:8];
     
     if ((modifier & NSEventModifierFlagControl)) {

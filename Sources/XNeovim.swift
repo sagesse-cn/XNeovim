@@ -81,8 +81,7 @@ import XNeovimService
         shared.bundle = bundle
         shared.service.start()
         
-        // Configure service
-        shared.service.command(.init(string: "set noswapfile"))
+        shared.service.command(.init(string: ""))
     }
 
     // MARK: - Property

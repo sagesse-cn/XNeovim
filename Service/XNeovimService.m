@@ -14,46 +14,26 @@
 
 @interface XNeovimService ()
 
-@property (nonatomic, assign) BOOL runing;
-
 @end
 
 @implementation XNeovimService
 
 - (void)start {
-    @synchronized(self) {
-        // If the service is running, ignored
-        if (self.runing) {
-            return;
-        }
-        self.runing = true;
-        
-        // start service
-        xnvim_service_start(nil);
-    }
+    xnvim_service_start(nil);
 }
 
 - (void)stop {
-    @synchronized(self) {
-        // If the service is running, ignored
-        if (!self.runing) {
-            return;
-        }
-        self.runing = false;
-
-        // stop service
-        xnvim_service_stop();
-    }
+    xnvim_service_stop();
 }
 
 - (void)input:(XNeovimServiceString*)keys {
-    xnvim_service_async(^{
+    xnvim_dispatch_async(^{
         nvim_input(keys.nString);
     });
 }
 
 - (void)command:(XNeovimServiceString*)command {
-    xnvim_service_async(^{
+    xnvim_dispatch_async(^{
         Error err = ERROR_INIT;
         
         nvim_command(command.nString, &err);
@@ -65,6 +45,35 @@
 }
 
 - (void)feedkeys:(XNeovimServiceString*)keys {
+}
+
+- (void)setCursor:(NSInteger)row column:(NSInteger)column {
+    xnvim_dispatch_async(^{
+        Array position = ARRAY_DICT_INIT;
+        
+        position.size = 2;
+        position.capacity = 2;
+        position.items = xmalloc(2 * sizeof(Object));
+        
+        position.items[0] = (Object) {
+            .type = kObjectTypeInteger,
+            .data.integer = row
+        };
+        
+        position.items[1] = (Object) {
+            .type = kObjectTypeInteger,
+            .data.integer = column
+        };;
+        
+        Error err = ERROR_INIT;
+        
+        nvim_win_set_cursor(nvim_get_current_win(), position, &err);
+//        // The above call seems to be not enough...
+//        nvim_input((String) { .data="<ESC>", .size=5 });
+        
+        xfree(position.items);
+    });
+
 }
 
 @end

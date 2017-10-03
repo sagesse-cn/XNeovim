@@ -17,6 +17,8 @@
 #define Boolean CarbonBoolean
 #define FileInfo CarbonFileInfo
 
+#undef DEBUG // on auto/config.h redefine
+
 #import <nvim/vim.h>
 #import <nvim/api/vim.h>
 #import <nvim/ui.h>
@@ -36,7 +38,7 @@
 void xnvim_service_start(NSArray* args);
 void xnvim_service_stop(void);
 
-void xnvim_service_sync(dispatch_block_t block);
-void xnvim_service_async(dispatch_block_t block);
+void xnvim_dispatch_sync(dispatch_block_t block);
+void xnvim_dispatch_async(dispatch_block_t block);
 
 #endif /* XNeovim_h */

@@ -34,7 +34,7 @@ internal class XNeovimWindow: NSObject {
             if editor.document.fileType == "com.apple.dt.playground" {
                 path += "/Contents.swift"
             }
-            service.command(.init(string: ":edit \(path)"))
+            service.command(.init(string: "edit \(path)"))
         }
     }
     
