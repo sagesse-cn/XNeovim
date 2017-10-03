@@ -58,7 +58,7 @@
       <PathRunnable
          runnableDebuggingMode = "0"
          BundleIdentifier = "com.apple.dt.Xcode"
-         FilePath = "/Applications/XcodeGr8.app">
+         FilePath = "/Applications/Xcode.app">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference
@@ -70,10 +70,10 @@
          </BuildableReference>
       </MacroExpansion>
       <CommandLineArguments>
-        <CommandLineArgument
-          argument = "-PluginLoadingLogLevel 3"
-          isEnabled = "YES">
-        </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-PluginLoadingLogLevel 3"
+            isEnabled = "NO">
+         </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>

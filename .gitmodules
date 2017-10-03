@@ -1,0 +1,3 @@
+[submodule "Service/neovim"]
+	path = Service/neovim
+	url = https://github.com/sagesse-cn/neovim.git
