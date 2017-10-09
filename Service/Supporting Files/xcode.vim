@@ -13,5 +13,8 @@ let loaded_xnvim = 1
 " In xcode swapfile does not support
 set noswapfile
 
+" In xcode tableline does not support
+set showtabline=0
+
 " In xcode cannot be written to the file directly
 autocmd BufWriteCmd * echom "Can't written"

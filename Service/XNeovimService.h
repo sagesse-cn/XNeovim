@@ -16,18 +16,18 @@ FOUNDATION_EXPORT const unsigned char XNeovimServiceVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <XNeovimService/PublicHeader.h>
 
-#import <XNeovimService/XNeovimServiceString.h>
-#import <XNeovimService/XNeovimServiceWindow.h>
+#import <AppKit/AppKit.h>
 
-@interface XNeovimService: NSObject
+#import <XNeovimService/XNeovimServer.h>
 
-- (void)start;
-- (void)stop;
+#import <XNeovimService/XNeovimServerInput.h>
+#import <XNeovimService/XNeovimServerPosition.h>
+#import <XNeovimService/XNeovimServerSelection.h>
 
-- (void)input:(XNeovimServiceString* _Nonnull)keys;
-- (void)command:(XNeovimServiceString* _Nonnull)command;
-- (void)feedkeys:(XNeovimServiceString* _Nonnull)keys;
+#import <XNeovimService/XNeovimServerView.h>
+#import <XNeovimService/XNeovimServerWindow.h>
+#import <XNeovimService/XNeovimServerScreen.h>
 
-- (void)setCursor:(NSInteger)row column:(NSInteger)column;
 
-@end
+
+

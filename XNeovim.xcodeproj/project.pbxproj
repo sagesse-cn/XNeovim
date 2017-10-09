@@ -15,12 +15,11 @@
 		0C7D3CE41F80B2D200D26CB3 /* IDESourceEditor in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7D3CE31F80B2C400D26CB3 /* IDESourceEditor */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C7D3CE61F80B5F400D26CB3 /* DVTFoundation in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7D3CE51F80B5F100D26CB3 /* DVTFoundation */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C7D3CE81F80B9A100D26CB3 /* IDEPegasusSourceEditor in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7D3CE71F80B99800D26CB3 /* IDEPegasusSourceEditor */; };
-		0C7D3CEA1F81684300D26CB3 /* XNeovimWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7D3CE91F81684300D26CB3 /* XNeovimWindow.swift */; };
+		0C7D3CEA1F81684300D26CB3 /* XNeovimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7D3CE91F81684300D26CB3 /* XNeovimView.swift */; };
 		0C7D3CEC1F81687F00D26CB3 /* XNeovimStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7D3CEB1F81687F00D26CB3 /* XNeovimStatusBar.swift */; };
 		0C7D3CEE1F81727E00D26CB3 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7D3CED1F81727E00D26CB3 /* Helper.swift */; };
 		0C8F7B401F822F51006C356E /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8F7B3F1F822F50006C356E /* libiconv.tbd */; };
 		0C95C7501F80314600D477DB /* XNeovimService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CDE27811F802CB4005D4E3C /* XNeovimService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0C95C7751F803D7000D477DB /* XNeovimService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C95C7731F803D4C00D477DB /* XNeovimService.m */; };
 		0C95C78D1F80407100D477DB /* libintl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C78C1F80407100D477DB /* libintl.a */; };
 		0C95C7A01F807DDD00D477DB /* libjemalloc_pic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C7971F807DB000D477DB /* libjemalloc_pic.a */; };
 		0C95C7A11F807DDD00D477DB /* libjemalloc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C79D1F807DB100D477DB /* libjemalloc.a */; };
@@ -36,14 +35,27 @@
 		0C95C7B11F8082F900D477DB /* DVTKit in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C7AC1F8082BF00D477DB /* DVTKit */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C95C7D21F8083A200D477DB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C95C7C01F80836800D477DB /* Logger.swift */; };
 		0C95C7D31F8083A200D477DB /* Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C95C7C11F80836800D477DB /* Runtime.swift */; };
-		0C9836671F8235030047E699 /* XNeovimServiceWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C9836651F8235030047E699 /* XNeovimServiceWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0C9836681F8235030047E699 /* XNeovimServiceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9836661F8235030047E699 /* XNeovimServiceWindow.m */; };
-		0C98366F1F8247AD0047E699 /* XNeovimServiceString.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C98366D1F8247AD0047E699 /* XNeovimServiceString.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0C9836701F8247AD0047E699 /* XNeovimServiceString.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C98366E1F8247AD0047E699 /* XNeovimServiceString.m */; };
-		0C9836771F82A6B20047E699 /* XNeovimServiceString+Bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C9836751F82A6B20047E699 /* XNeovimServiceString+Bridge.h */; };
-		0C9836781F82A6B20047E699 /* XNeovimServiceString+Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9836761F82A6B20047E699 /* XNeovimServiceString+Bridge.m */; };
-		0C98367C1F82AB730047E699 /* XNeovim.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C98367B1F82AB730047E699 /* XNeovim.m */; };
+		0C9A7D571F86D5A200D74A99 /* XNeovimServerInput.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C9A7D551F86D5A200D74A99 /* XNeovimServerInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C9A7D581F86D5A200D74A99 /* XNeovimServerInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A7D561F86D5A200D74A99 /* XNeovimServerInput.m */; };
+		0C9A7D5B1F86D7F500D74A99 /* XNeovimServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A7D591F86D7F400D74A99 /* XNeovimServer.m */; };
+		0C9A7D5C1F86D7F500D74A99 /* XNeovimServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C9A7D5A1F86D7F400D74A99 /* XNeovimServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C9A7D5F1F86D80400D74A99 /* XNeovimServerScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A7D5D1F86D80400D74A99 /* XNeovimServerScreen.m */; };
+		0C9A7D601F86D80400D74A99 /* XNeovimServerScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C9A7D5E1F86D80400D74A99 /* XNeovimServerScreen.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CB104C71EEFF589002CB7FA /* XNeovimService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CDE27811F802CB4005D4E3C /* XNeovimService.framework */; };
+		0CD3D5DB1F868FF80081EEF9 /* XNeovimServerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD3D5D31F868FF70081EEF9 /* XNeovimServerView.m */; };
+		0CD3D5DC1F868FF80081EEF9 /* XNeovimBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD3D5D41F868FF70081EEF9 /* XNeovimBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CD3D5DD1F868FF80081EEF9 /* XNeovimBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD3D5D51F868FF80081EEF9 /* XNeovimBuffer.m */; };
+		0CD3D5DE1F868FF80081EEF9 /* XNeovimServerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD3D5D61F868FF80081EEF9 /* XNeovimServerWindow.m */; };
+		0CD3D5E01F868FF80081EEF9 /* XNeovimServerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD3D5D81F868FF80081EEF9 /* XNeovimServerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CD3D5E11F868FF80081EEF9 /* XNeovimServerWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD3D5D91F868FF80081EEF9 /* XNeovimServerWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CD8354E1F8B1DFE00773F21 /* XNeovimServerScreen+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD835481F8B1DFD00773F21 /* XNeovimServerScreen+Internal.h */; };
+		0CD835501F8B1DFE00773F21 /* XNeovimServerWindow+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD8354A1F8B1DFD00773F21 /* XNeovimServerWindow+Internal.h */; };
+		0CD835511F8B1DFE00773F21 /* XNeovimServerView+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD8354B1F8B1DFE00773F21 /* XNeovimServerView+Internal.h */; };
+		0CD835541F8B2A8B00773F21 /* XNeovimServer+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD835531F8B2A8B00773F21 /* XNeovimServer+Internal.h */; };
+		0CD835571F8B302500773F21 /* XNeovimServerSelection.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD835551F8B302500773F21 /* XNeovimServerSelection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CD835581F8B302500773F21 /* XNeovimServerSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD835561F8B302500773F21 /* XNeovimServerSelection.m */; };
+		0CD8355B1F8B32E000773F21 /* XNeovimServerPosition.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD835591F8B32E000773F21 /* XNeovimServerPosition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CD8355C1F8B32E000773F21 /* XNeovimServerPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8355A1F8B32E000773F21 /* XNeovimServerPosition.m */; };
 		0CDE27911F802CB4005D4E3C /* XNeovimService.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CDE27831F802CB4005D4E3C /* XNeovimService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35463F101C27665100C5544D /* XNeovim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35463F0F1C27665100C5544D /* XNeovim.swift */; };
 /* End PBXBuildFile section */
@@ -90,13 +102,12 @@
 		0C7D3CE31F80B2C400D26CB3 /* IDESourceEditor */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = IDESourceEditor; path = ../PlugIns/IDESourceEditor.ideplugin/Contents/MacOS/IDESourceEditor; sourceTree = DEVELOPER_DIR; };
 		0C7D3CE51F80B5F100D26CB3 /* DVTFoundation */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = DVTFoundation; path = ../SharedFrameworks/DVTFoundation.framework/Versions/A/DVTFoundation; sourceTree = DEVELOPER_DIR; };
 		0C7D3CE71F80B99800D26CB3 /* IDEPegasusSourceEditor */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = IDEPegasusSourceEditor; path = ../PlugIns/IDEPegasusSourceEditor.ideplugin/Contents/MacOS/IDEPegasusSourceEditor; sourceTree = DEVELOPER_DIR; };
-		0C7D3CE91F81684300D26CB3 /* XNeovimWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XNeovimWindow.swift; sourceTree = "<group>"; };
+		0C7D3CE91F81684300D26CB3 /* XNeovimView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XNeovimView.swift; sourceTree = "<group>"; };
 		0C7D3CEB1F81687F00D26CB3 /* XNeovimStatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XNeovimStatusBar.swift; sourceTree = "<group>"; };
 		0C7D3CED1F81727E00D26CB3 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		0C8F7B371F822E77006C356E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C8F7B3F1F822F50006C356E /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		0C95C7511F8032A100D477DB /* neovim */ = {isa = PBXFileReference; lastKnownFileType = folder; path = neovim; sourceTree = "<group>"; };
-		0C95C7731F803D4C00D477DB /* XNeovimService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNeovimService.m; sourceTree = "<group>"; };
 		0C95C78C1F80407100D477DB /* libintl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libintl.a; path = libintl/lib/libintl.a; sourceTree = "<group>"; };
 		0C95C7971F807DB000D477DB /* libjemalloc_pic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjemalloc_pic.a; path = ../neovim/.deps/usr/lib/libjemalloc_pic.a; sourceTree = "<group>"; };
 		0C95C7981F807DB000D477DB /* libuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libuv.a; path = ../neovim/.deps/usr/lib/libuv.a; sourceTree = "<group>"; };
@@ -119,14 +130,27 @@
 		0C95C7C01F80836800D477DB /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		0C95C7C11F80836800D477DB /* Runtime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Runtime.swift; sourceTree = "<group>"; };
 		0C95C7C21F80836800D477DB /* XNeovim-Bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XNeovim-Bridging.h"; sourceTree = "<group>"; };
-		0C9836651F8235030047E699 /* XNeovimServiceWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNeovimServiceWindow.h; sourceTree = "<group>"; };
-		0C9836661F8235030047E699 /* XNeovimServiceWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNeovimServiceWindow.m; sourceTree = "<group>"; };
-		0C98366D1F8247AD0047E699 /* XNeovimServiceString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNeovimServiceString.h; sourceTree = "<group>"; };
-		0C98366E1F8247AD0047E699 /* XNeovimServiceString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNeovimServiceString.m; sourceTree = "<group>"; };
-		0C9836751F82A6B20047E699 /* XNeovimServiceString+Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XNeovimServiceString+Bridge.h"; sourceTree = "<group>"; };
-		0C9836761F82A6B20047E699 /* XNeovimServiceString+Bridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XNeovimServiceString+Bridge.m"; sourceTree = "<group>"; };
 		0C98367A1F82AAFE0047E699 /* XNeovim.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNeovim.h; sourceTree = "<group>"; };
-		0C98367B1F82AB730047E699 /* XNeovim.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNeovim.m; sourceTree = "<group>"; };
+		0C9A7D551F86D5A200D74A99 /* XNeovimServerInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNeovimServerInput.h; sourceTree = "<group>"; };
+		0C9A7D561F86D5A200D74A99 /* XNeovimServerInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNeovimServerInput.m; sourceTree = "<group>"; };
+		0C9A7D591F86D7F400D74A99 /* XNeovimServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNeovimServer.m; sourceTree = "<group>"; wrapsLines = 0; };
+		0C9A7D5A1F86D7F400D74A99 /* XNeovimServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNeovimServer.h; sourceTree = "<group>"; };
+		0C9A7D5D1F86D80400D74A99 /* XNeovimServerScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNeovimServerScreen.m; sourceTree = "<group>"; };
+		0C9A7D5E1F86D80400D74A99 /* XNeovimServerScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNeovimServerScreen.h; sourceTree = "<group>"; };
+		0CD3D5D31F868FF70081EEF9 /* XNeovimServerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNeovimServerView.m; sourceTree = "<group>"; };
+		0CD3D5D41F868FF70081EEF9 /* XNeovimBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNeovimBuffer.h; sourceTree = "<group>"; };
+		0CD3D5D51F868FF80081EEF9 /* XNeovimBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNeovimBuffer.m; sourceTree = "<group>"; };
+		0CD3D5D61F868FF80081EEF9 /* XNeovimServerWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNeovimServerWindow.m; sourceTree = "<group>"; };
+		0CD3D5D81F868FF80081EEF9 /* XNeovimServerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNeovimServerView.h; sourceTree = "<group>"; };
+		0CD3D5D91F868FF80081EEF9 /* XNeovimServerWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNeovimServerWindow.h; sourceTree = "<group>"; };
+		0CD835481F8B1DFD00773F21 /* XNeovimServerScreen+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XNeovimServerScreen+Internal.h"; sourceTree = "<group>"; };
+		0CD8354A1F8B1DFD00773F21 /* XNeovimServerWindow+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XNeovimServerWindow+Internal.h"; sourceTree = "<group>"; };
+		0CD8354B1F8B1DFE00773F21 /* XNeovimServerView+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XNeovimServerView+Internal.h"; sourceTree = "<group>"; };
+		0CD835531F8B2A8B00773F21 /* XNeovimServer+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XNeovimServer+Internal.h"; sourceTree = "<group>"; };
+		0CD835551F8B302500773F21 /* XNeovimServerSelection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNeovimServerSelection.h; sourceTree = "<group>"; };
+		0CD835561F8B302500773F21 /* XNeovimServerSelection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNeovimServerSelection.m; sourceTree = "<group>"; };
+		0CD835591F8B32E000773F21 /* XNeovimServerPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNeovimServerPosition.h; sourceTree = "<group>"; };
+		0CD8355A1F8B32E000773F21 /* XNeovimServerPosition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNeovimServerPosition.m; sourceTree = "<group>"; };
 		0CDE27811F802CB4005D4E3C /* XNeovimService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XNeovimService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CDE27831F802CB4005D4E3C /* XNeovimService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNeovimService.h; sourceTree = "<group>"; };
 		35463F091C27665100C5544D /* XNeovim.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XNeovim.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,7 +208,6 @@
 			children = (
 				0C7735F81F84251400EF582E /* xcode.vim */,
 				0C98367A1F82AAFE0047E699 /* XNeovim.h */,
-				0C98367B1F82AB730047E699 /* XNeovim.m */,
 				0C8F7B371F822E77006C356E /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -193,12 +216,26 @@
 		0C8F7B3B1F822EBC006C356E /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				0C98366D1F8247AD0047E699 /* XNeovimServiceString.h */,
-				0C98366E1F8247AD0047E699 /* XNeovimServiceString.m */,
-				0C9836751F82A6B20047E699 /* XNeovimServiceString+Bridge.h */,
-				0C9836761F82A6B20047E699 /* XNeovimServiceString+Bridge.m */,
-				0C9836651F8235030047E699 /* XNeovimServiceWindow.h */,
-				0C9836661F8235030047E699 /* XNeovimServiceWindow.m */,
+				0CD3D5D41F868FF70081EEF9 /* XNeovimBuffer.h */,
+				0CD3D5D51F868FF80081EEF9 /* XNeovimBuffer.m */,
+				0C9A7D5A1F86D7F400D74A99 /* XNeovimServer.h */,
+				0C9A7D591F86D7F400D74A99 /* XNeovimServer.m */,
+				0CD835531F8B2A8B00773F21 /* XNeovimServer+Internal.h */,
+				0C9A7D551F86D5A200D74A99 /* XNeovimServerInput.h */,
+				0C9A7D561F86D5A200D74A99 /* XNeovimServerInput.m */,
+				0C9A7D5E1F86D80400D74A99 /* XNeovimServerScreen.h */,
+				0C9A7D5D1F86D80400D74A99 /* XNeovimServerScreen.m */,
+				0CD835481F8B1DFD00773F21 /* XNeovimServerScreen+Internal.h */,
+				0CD3D5D81F868FF80081EEF9 /* XNeovimServerView.h */,
+				0CD3D5D31F868FF70081EEF9 /* XNeovimServerView.m */,
+				0CD8354B1F8B1DFE00773F21 /* XNeovimServerView+Internal.h */,
+				0CD3D5D91F868FF80081EEF9 /* XNeovimServerWindow.h */,
+				0CD3D5D61F868FF80081EEF9 /* XNeovimServerWindow.m */,
+				0CD8354A1F8B1DFD00773F21 /* XNeovimServerWindow+Internal.h */,
+				0CD835591F8B32E000773F21 /* XNeovimServerPosition.h */,
+				0CD8355A1F8B32E000773F21 /* XNeovimServerPosition.m */,
+				0CD835551F8B302500773F21 /* XNeovimServerSelection.h */,
+				0CD835561F8B302500773F21 /* XNeovimServerSelection.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -259,7 +296,7 @@
 		0C95C7BA1F80836800D477DB /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				0C7D3CE91F81684300D26CB3 /* XNeovimWindow.swift */,
+				0C7D3CE91F81684300D26CB3 /* XNeovimView.swift */,
 				0C7D3CEB1F81687F00D26CB3 /* XNeovimStatusBar.swift */,
 			);
 			path = Components;
@@ -284,7 +321,6 @@
 				0C8F7B3B1F822EBC006C356E /* Components */,
 				0C8F7B341F822E76006C356E /* Supporting Files */,
 				0CDE27831F802CB4005D4E3C /* XNeovimService.h */,
-				0C95C7731F803D4C00D477DB /* XNeovimService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -338,10 +374,19 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C9A7D5C1F86D7F500D74A99 /* XNeovimServer.h in Headers */,
+				0CD8354E1F8B1DFE00773F21 /* XNeovimServerScreen+Internal.h in Headers */,
+				0CD835501F8B1DFE00773F21 /* XNeovimServerWindow+Internal.h in Headers */,
+				0CD3D5E01F868FF80081EEF9 /* XNeovimServerView.h in Headers */,
+				0CD3D5E11F868FF80081EEF9 /* XNeovimServerWindow.h in Headers */,
+				0C9A7D601F86D80400D74A99 /* XNeovimServerScreen.h in Headers */,
+				0CD835571F8B302500773F21 /* XNeovimServerSelection.h in Headers */,
+				0CD3D5DC1F868FF80081EEF9 /* XNeovimBuffer.h in Headers */,
+				0CD8355B1F8B32E000773F21 /* XNeovimServerPosition.h in Headers */,
+				0CD835541F8B2A8B00773F21 /* XNeovimServer+Internal.h in Headers */,
+				0C9A7D571F86D5A200D74A99 /* XNeovimServerInput.h in Headers */,
+				0CD835511F8B1DFE00773F21 /* XNeovimServerView+Internal.h in Headers */,
 				0CDE27911F802CB4005D4E3C /* XNeovimService.h in Headers */,
-				0C9836771F82A6B20047E699 /* XNeovimServiceString+Bridge.h in Headers */,
-				0C98366F1F8247AD0047E699 /* XNeovimServiceString.h in Headers */,
-				0C9836671F8235030047E699 /* XNeovimServiceWindow.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,11 +512,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C9836781F82A6B20047E699 /* XNeovimServiceString+Bridge.m in Sources */,
-				0C9836681F8235030047E699 /* XNeovimServiceWindow.m in Sources */,
-				0C95C7751F803D7000D477DB /* XNeovimService.m in Sources */,
-				0C98367C1F82AB730047E699 /* XNeovim.m in Sources */,
-				0C9836701F8247AD0047E699 /* XNeovimServiceString.m in Sources */,
+				0C9A7D5F1F86D80400D74A99 /* XNeovimServerScreen.m in Sources */,
+				0CD835581F8B302500773F21 /* XNeovimServerSelection.m in Sources */,
+				0C9A7D5B1F86D7F500D74A99 /* XNeovimServer.m in Sources */,
+				0CD3D5DB1F868FF80081EEF9 /* XNeovimServerView.m in Sources */,
+				0CD8355C1F8B32E000773F21 /* XNeovimServerPosition.m in Sources */,
+				0C9A7D581F86D5A200D74A99 /* XNeovimServerInput.m in Sources */,
+				0CD3D5DE1F868FF80081EEF9 /* XNeovimServerWindow.m in Sources */,
+				0CD3D5DD1F868FF80081EEF9 /* XNeovimBuffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,7 +531,7 @@
 				0C95C7D21F8083A200D477DB /* Logger.swift in Sources */,
 				0C6289601F83A57200A57EED /* SourceCodeEditor.swift in Sources */,
 				0C95C7D31F8083A200D477DB /* Runtime.swift in Sources */,
-				0C7D3CEA1F81684300D26CB3 /* XNeovimWindow.swift in Sources */,
+				0C7D3CEA1F81684300D26CB3 /* XNeovimView.swift in Sources */,
 				35463F101C27665100C5544D /* XNeovim.swift in Sources */,
 				0C7D3CEE1F81727E00D26CB3 /* Helper.swift in Sources */,
 			);

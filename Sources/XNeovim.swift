@@ -79,15 +79,13 @@ import XNeovimService
 
         // The location of the switch to the plug-in
         shared.bundle = bundle
-        shared.service.start()
-        
-        shared.service.command(.init(string: ""))
+        shared.server.start()
     }
 
     // MARK: - Property
 
     @objc public private(set) var bundle: Bundle = .main
-    @objc public private(set) var service: XNeovimService = .init()
+    @objc public private(set) var server: XNeovimServer = .shared
 
     @objc public static let shared: XNeovim = .init()
 }

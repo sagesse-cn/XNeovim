@@ -49,7 +49,7 @@ internal enum Runtime {
 
                 }
                 // the init method is not supported
-                guard !NSStringFromSelector(name).hasPrefix("initWith") else {
+                guard !NSStringFromSelector(name).hasPrefix("init") && !NSStringFromSelector(name).hasPrefix(".") else {
                     return
                 }
                 

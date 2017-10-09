@@ -22,28 +22,32 @@ internal class SourceCodeEditor: IDEEditor {
     
     @NSManaged var sourceEditorView: SourceEditorView
     
+    @objc dynamic func xvim_revertStateWithDictionary(_ sender: NSDictionary) {
+        xvim_revertStateWithDictionary(sender)
+        logger.debug?.write(sender)
+    }
     
     @objc dynamic func xvim_viewDidLoad() {
         self.xvim_viewDidLoad()
         
         
         // Initialize neovim window
-        let window = XNeovimWindow(editor: self, editorView: sourceEditorView)
+        let view = XNeovimView(editor: self, editorView: sourceEditorView, editorContentView: sourceEditorView.contentView)
         
         // Initialize neovim statusbar
-        window.statusBar.scrollView = sourceEditorView.scrollView
-        window.statusBar.translatesAutoresizingMaskIntoConstraints = false
+        view.statusBar.scrollView = sourceEditorView.scrollView
+        view.statusBar.translatesAutoresizingMaskIntoConstraints = false
         
         //        // Bind its visibility to 'laststatus'
         //        XVimLaststatusTransformer* transformer = [[XVimLaststatusTransformer alloc] init];
         //        [status bind:@"hidden" toObject:[[XVim instance] options] withKeyPath:@"laststatus" options:@{NSValueTransformerBindingOption:transformer}];
 
         // Add status view & constraints (for the source view and status bar)
-        sourceEditorView.addSubview(window.statusBar)
+        sourceEditorView.addSubview(view.statusBar)
         sourceEditorView.addConstraints([
-            .init(item: sourceEditorView, attribute: .bottom, relatedBy: .equal, toItem: window.statusBar, attribute: .bottom, multiplier: 1, constant: 0),
-            .init(item: sourceEditorView, attribute: .leading, relatedBy: .equal, toItem: window.statusBar, attribute: .leading, multiplier: 1, constant: 0),
-            .init(item: sourceEditorView, attribute: .trailing, relatedBy: .equal, toItem: window.statusBar, attribute: .trailing, multiplier: 1, constant: 0),
+            .init(item: sourceEditorView, attribute: .bottom, relatedBy: .equal, toItem: view.statusBar, attribute: .bottom, multiplier: 1, constant: 0),
+            .init(item: sourceEditorView, attribute: .leading, relatedBy: .equal, toItem: view.statusBar, attribute: .leading, multiplier: 1, constant: 0),
+            .init(item: sourceEditorView, attribute: .trailing, relatedBy: .equal, toItem: view.statusBar, attribute: .trailing, multiplier: 1, constant: 0),
         ])
         
         // Add to change observer
@@ -89,37 +93,114 @@ internal class SourceEditorView: NSView {
         } ?? self.xvim_keyDown(event)
     }
     
+
+//    @objc dynamic func xvim_concludeDragOperation(_ sender: NSDraggingInfo?) {
+//        xvim_concludeDragOperation(sender)
+//        logger.debug?.write()
+//    }
+//    @objc dynamic func xvim_performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+//        let x = xvim_performDragOperation(sender)
+//        logger.debug?.write()
+//        return x
+//    }
+//    @objc dynamic func xvim_prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
+//        let x = xvim_prepareForDragOperation(sender)
+//        logger.debug?.write()
+//        return x
+//    }
+    
+    //    //        - (void)mouseExited:(id)arg1;
+    //    //        - (void)mouseEntered:(id)arg1;
+    //    //        - (void)mouseMoved:(id)arg1;
+    //    //        - (void)rightMouseUp:(id)arg1;
+    //    //        - (void)mouseUp:(id)arg1;
+    //    //        - (void)mouseDragged:(id)arg1;
+    //    //        - (void)rightMouseDown:(id)arg1;
+    //    //        - (void)mouseDown:(id)arg1;
+
+//
+//
+//
+//    @objc override dynamic func rightMouseUp(with event: NSEvent) {
+////        xvim_rightMouseUp(event)
+//        logger.debug?.write(event)
+//    }
+//
+//    @objc override dynamic func rightMouseDown(_ event: NSEvent) {
+////        xvim_rightMouseDown(event)
+//        logger.debug?.write(event)
+//    }
+
+    //    //        - (void)draggingExited:(id)arg1;//    //        - (unsigned long long)draggingUpdated:(id)arg1;//    //        - (unsigned long long)draggingEntered:(id)arg1;
+
+//                - (void)concludeDragOperation:(id)arg1;
+//                - (BOOL)performDragOperation:(id)arg1;
+//                - (BOOL)prepareForDragOperation:(id)arg1;
+
+//    @objc dynamic func xvim_mouseDragged(_ event: NSEvent) {
+////        logger.debug?.write(event)
+//
+//
+//        //NSEvent: type=LMouseDragged loc=(55.0625,524.395) time=1035298.3 flags=0x80020 win=0x10a23f590 winNum=21652 ctxt=0x0 evNum=-6145 click=1 buttonNumber=0 pressure=1 deltaX=0.000000 deltaY=0.000000 deviceID:0x300000014400000 subtype=NSEventSubtypeTouch
+//        //NSEvent: type=LMouseDragged loc=(782.656,38.0156) time=1035301.2 flags=0x80020 win=0x10a23f590 winNum=21652 ctxt=0x0 evNum=-6145 click=1 buttonNumber=0 pressure=1 deltaX=0.000000 deltaY=0.000000 deviceID:0x300000014400000 subtype=NSEventSubtypeTouch
+//
+//        let nv = NSEvent.mouseEvent(with: .leftMouseDragged, location: event.locationInWindow, modifierFlags: [], timestamp: 98, windowNumber: 0, context: nil, eventNumber: 0, clickCount: 2, pressure: 1)
+//        xvim_mouseDragged(nv!)
+//    }
+//    @objc dynamic func xvim_mouseUp(_ event: NSEvent) {
+////        logger.debug?.write(event)
+//
+//        //NSEvent: type=LMouseUp loc=(782.656,38.0156) time=1035301.5 flags=0x80020 win=0x10a23f590 winNum=21652 ctxt=0x0 evNum=-6145 click=0 buttonNumber=0 pressure=0 deviceID:0x300000014400000 subtype=NSEventSubtypeTouch
+//
+//        let nv = NSEvent.mouseEvent(with: .leftMouseUp, location: event.locationInWindow, modifierFlags: [], timestamp: 98, windowNumber: 0, context: nil, eventNumber: 0, clickCount: 0, pressure: 0)
+//        xvim_mouseUp(nv!)
+//    }
+//    @objc dynamic func xvim_mouseDown(_ event: NSEvent) {
+////        logger.debug?.write(event)
+//
+//        //open class func mouseEvent(with type: NSEvent.EventType, location: NSPoint, modifierFlags flags: NSEvent.ModifierFlags, timestamp time: TimeInterval, windowNumber wNum: Int, context unusedPassNil: NSGraphicsContext?, eventNumber eNum: Int, clickCount cNum: Int, pressure: Float) -> NSEvent?
+//
+//
+//        //NSEvent: type=LMouseDown loc=(55.0625,525.098) time=1035298.2 flags=0x80020 win=0x10a23f590 winNum=21652 ctxt=0x0 evNum=-6145 click=1 buttonNumber=0 pressure=1 deviceID:0x300000014400000 subtype=NSEventSubtypeTouch
+//
+//        let nv = NSEvent.mouseEvent(with: .leftMouseDown, location: event.locationInWindow, modifierFlags: [], timestamp: 99, windowNumber: 0, context: nil, eventNumber: 0, clickCount: 2, pressure: 1)
+//        xvim_mouseDown(nv!)
+//    }
+    
     @objc dynamic func xvim_doCommandBySelector(_ sel: Selector) {
         xvim_doCommandBySelector(sel)
 
         logger.debug?.write(sel)
     }
     
+//    @objc dynamic override func perform(_ aSelector: Selector!, with object: Any!) -> Unmanaged<AnyObject>! {
+//
+//        logger.debug?.write(aSelector, object)
+//        return super.perform(aSelector, with: object)
+//    }
+    
     @objc dynamic func xvim_selectionDidChange(_ notification: Notification) {
         guard let window = xvim_window else {
-            return 
+            return
         }
-        
+
         let selection = contentView.accessibilitySelectedTextRange()
         let start = selection.lowerBound
-        let end = selection.upperBound
-        
+        //let end = selection.upperBound
+
         guard start != NSNotFound else {
             return
         }
-        
-        let srow = contentView.accessibilityLine(for: start)
-        let srange = contentView.accessibilityRange(forLine: srow)
-        let scolumn = max(min(start - srange.lowerBound, srange.length - 2), 0)
 
-        let erow = contentView.accessibilityLine(for: end)
-        let erange = contentView.accessibilityRange(forLine: erow)
-        let ecolumn = max(min(end - erange.lowerBound, erange.length - 2), 0)
+        let startRow = contentView.accessibilityLine(for: start)
+        let startRange = contentView.accessibilityRange(forLine: startRow)
+        let startColumn = max(min(start - startRange.lowerBound, startRange.length - 2), 0)
+
+        // update
+        window.selection = .init(cursor: .init(row: startRow + 1, column: startColumn))
         
-        logger.debug?.write("\(srow + 1):\(scolumn) -> \(erow + 1):\(ecolumn)")
-        
-        //setAccessibilitySelectedTextRange
-        window.service.setCursor(srow + 1, column: scolumn)
+//        logger.debug?.write(notification)
+//        logger.debug?.write(contentView.accessibilitySelectedTextRanges())
     }
     
 //    @objc dynamic func xvim_insertText(_ text: Any) {
@@ -246,19 +327,19 @@ internal class SourceEditorContentView: NSView {
 
 internal class SourceEditorCursorLayer: CAShapeLayer {
     
-//    override var path: CGPath? {
-//        set {
-//            return super.path = newValue?.mutableCopy().map {
-//                var frame = $0.boundingBox
-//                frame.size.width = 8
-//                $0.addRect(frame)
-//                return $0
-//            }
-//        }
-//        get {
-//            return super.path
-//        }
-//    }
+    override var path: CGPath? {
+        set {
+            return super.path = newValue?.mutableCopy().map {
+                var frame = $0.boundingBox
+                frame.size.width = 8
+                $0.addRect(frame)
+                return $0
+            }
+        }
+        get {
+            return super.path
+        }
+    }
     override var opacity: Float {
         set {
             return super.opacity = newValue / 2

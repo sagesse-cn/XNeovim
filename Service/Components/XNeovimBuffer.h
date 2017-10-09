@@ -1,5 +1,5 @@
 //
-//  XNeovimServiceWindow.h
+//  XNeovimBuffer.h
 //  XNeovimService
 //
 //  Created by SAGESSE on 10/2/17.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface XNeovimServiceWindow : NSObject
+@interface XNeovimBuffer : NSObject
 
 @end
