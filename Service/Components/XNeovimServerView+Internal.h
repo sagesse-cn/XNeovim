@@ -37,5 +37,6 @@
 - (void)setWindow:(XNeovimServerView *)window;
 
 - (void)updateSelection:(XNeovimServerSelection*)selection;
+- (void)updateMode:(NSInteger)mode;
 
 @end

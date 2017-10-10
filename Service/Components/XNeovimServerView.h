@@ -16,6 +16,9 @@
 
 - (void)serverView:(XNeovimServerView*)serverView selectionDidChange:(XNeovimServerSelection*)selection;
 
+- (void)serverView:(XNeovimServerView*)serverView modeDidChange:(NSInteger)mode;
+
+
 @end
 
 @interface XNeovimServerView : NSObject

@@ -8,8 +8,35 @@
 
 import Cocoa
 
+@_silgen_name("_rd_get_func_impl") func rd_get_func_impl<F>(_ f: F) -> UnsafeMutableRawPointer!
+
 internal enum Runtime {
     internal enum Method: Logport {
+        
+//        self.hello()
+//        self.world()
+//
+//        let p1 = rd_function_byname("__T07XNeovimAAC5helloyyF", nil)
+//        let p2 = rd_function_byname("__T07XNeovimAAC5worldyyF", nil)
+//
+//        rd_route(p1, p2, nil)
+//
+//        self.hello()
+//        self.world()
+        
+//        @asmname("_rd_get_func_impl")
+//        func rd_get_func_impl<Q>(Q) -> uintptr_t;
+//        @asmname("rd_route")
+//        func rd_route(uintptr_t, uintptr_t, CMutablePointer<uintptr_t>) -> CInt;
+//
+//        class SwiftRoute {
+//            class func replace<MethodT>(function targetMethod : MethodT, with replacement : MethodT) -> Int
+//            {
+//                // @todo: what can we do with a duplicate of the original function?
+//                return Int(rd_route(rd_get_func_impl(targetMethod), rd_get_func_impl(replacement), nil));
+//            }
+//        }
+        
         internal static func merge(_ source: AnyClass, to destination: String, prefix: String, override: Bool = false) {
             NSClassFromString(destination).map {
                 merge(source, to: $0, prefix: prefix, override: override)
@@ -113,150 +140,6 @@ internal enum Runtime {
         }
         static func offset(_ cls: AnyClass, name: String) -> Int? {
             return class_getInstanceVariable(cls, name).map { ivar_getOffset($0) }
-        }
-        
-        
-        static func dump(_ cls: AnyClass) {
-            
-            var count: UInt32 = 0
-            var result: Array<String> = []
-            
-            let allTypes: [(type: String, size: Int, value: String?)] = [
-                ("Any?", MemoryLayout<Any?>.stride, nil),
-                ("Any", MemoryLayout<Any>.stride, "0"),
-                
-                ("String", MemoryLayout<String>.stride, "\"\""),
-                ("String?", MemoryLayout<String?>.stride, nil),
-
-                ("AnyObject?", MemoryLayout<AnyObject?>.stride, nil),
-            ]
-            
-            _ = class_copyIvarList(cls, &count).map { ptr in
-                //
-                (0 ..< Int(count)).reversed().reduce(class_getInstanceSize(cls)) { total, index in
-                    let ivar = ptr.advanced(by: index).move()
-                    
-                    let offset = ivar_getOffset(ivar)
-                    let size = total - offset
-                    
-                    var name = ivar_getName(ivar).map { String(cString: $0) } ?? "__unknow_\(offset)"
-                    
-                    let tx = allTypes.first { $0.size == size }
-                    let otype = tx?.type ?? "Runtime.Ivar.Multiple\(Int(size / 8))<Int64>"
-                    var ovalue = tx?.value.map { " = \($0)" }
-                    
-                    if tx == nil {
-                        ovalue = " = 0"
-                    }
-                    
-                    name = name.replacingOccurrences(of: ".", with: "_")
-               
-                        
-                    result.append("var \(name): \(otype)\(ovalue ?? "") // offset: \(offset), size: \(size)")
-                    
-                    return offset
-                }
-            }
-            
-            result.reversed().forEach {
-                print($0)
-            }
-        }
-        struct Multiple2<T: ExpressibleByIntegerLiteral>: ExpressibleByIntegerLiteral {
-            
-            typealias IntegerLiteralType = T.IntegerLiteralType
-            
-            var value1: T
-            var value2: T
-            
-            init(integerLiteral value: IntegerLiteralType) {
-                value1 = .init(integerLiteral: value)
-                value2 = .init(integerLiteral: value)
-            }
-        }
-        struct Multiple4<T: ExpressibleByIntegerLiteral>: ExpressibleByIntegerLiteral {
-            
-            typealias IntegerLiteralType = T.IntegerLiteralType
-            
-            var value1: Multiple2<T>
-            var value2: Multiple2<T>
-            
-            init(integerLiteral value: IntegerLiteralType) {
-                value1 = .init(integerLiteral: value)
-                value2 = .init(integerLiteral: value)
-            }
-        }
-        struct Multiple6<T: ExpressibleByIntegerLiteral>: ExpressibleByIntegerLiteral {
-            
-            typealias IntegerLiteralType = T.IntegerLiteralType
-            
-            var value1: Multiple2<T>
-            var value2: Multiple4<T>
-            
-            init(integerLiteral value: IntegerLiteralType) {
-                value1 = .init(integerLiteral: value)
-                value2 = .init(integerLiteral: value)
-            }
-        }
-        struct Multiple8<T: ExpressibleByIntegerLiteral>: ExpressibleByIntegerLiteral {
-            
-            typealias IntegerLiteralType = T.IntegerLiteralType
-            
-            var value1: Multiple4<T>
-            var value2: Multiple4<T>
-            
-            init(integerLiteral value: IntegerLiteralType) {
-                value1 = .init(integerLiteral: value)
-                value2 = .init(integerLiteral: value)
-            }
-        }
-        struct Multiple10<T: ExpressibleByIntegerLiteral>: ExpressibleByIntegerLiteral {
-            
-            typealias IntegerLiteralType = T.IntegerLiteralType
-            
-            var value1: Multiple2<T>
-            var value2: Multiple8<T>
-            
-            init(integerLiteral value: IntegerLiteralType) {
-                value1 = .init(integerLiteral: value)
-                value2 = .init(integerLiteral: value)
-            }
-        }
-        struct Multiple16<T: ExpressibleByIntegerLiteral>: ExpressibleByIntegerLiteral {
-            
-            typealias IntegerLiteralType = T.IntegerLiteralType
-            
-            var value1: Multiple8<T>
-            var value2: Multiple8<T>
-            
-            init(integerLiteral value: IntegerLiteralType) {
-                value1 = .init(integerLiteral: value)
-                value2 = .init(integerLiteral: value)
-            }
-        }
-        struct Multiple32<T: ExpressibleByIntegerLiteral>: ExpressibleByIntegerLiteral {
-            
-            typealias IntegerLiteralType = T.IntegerLiteralType
-            
-            var value1: Multiple16<T>
-            var value2: Multiple16<T>
-            
-            init(integerLiteral value: IntegerLiteralType) {
-                value1 = .init(integerLiteral: value)
-                value2 = .init(integerLiteral: value)
-            }
-        }
-        struct Multiple64<T: ExpressibleByIntegerLiteral>: ExpressibleByIntegerLiteral {
-            
-            typealias IntegerLiteralType = T.IntegerLiteralType
-            
-            var value1: Multiple32<T>
-            var value2: Multiple32<T>
-            
-            init(integerLiteral value: IntegerLiteralType) {
-                value1 = .init(integerLiteral: value)
-                value2 = .init(integerLiteral: value)
-            }
         }
     }
 }

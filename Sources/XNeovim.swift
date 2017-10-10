@@ -17,16 +17,15 @@ import XNeovimService
             self?.applicationDidFinishLaunching()
         }
     }
-
+    
+    func dc<C, M>(_ method: (C) -> M) -> UnsafeMutableRawPointer! {
+        return rd_get_func_impl(method(unsafeBitCast(NSNull(), to: C.self)))
+    }
+    
     @objc public func applicationDidFinishLaunching() {
         // Plugin initialized!
         logger.info?.write("Plugin Version is \(bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "Unknown")!")
         logger.info?.write("Plugin NeoVim Service Version is \(XNeovimServiceVersionNumber)!")
-
-        //        NotificationCenter.default.addObserver(forName: nil, object: nil, queue: nil) {
-        //            logger.debug?.write($0.name)
-        //        }
-        
     }
 
     //

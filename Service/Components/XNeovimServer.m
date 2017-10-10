@@ -270,6 +270,7 @@ static void server_ui_mode_info_set(UI *ui __unused, Boolean enabled __unused,
 
 static void server_ui_mode_change(UI *ui __unused, String mode_str __unused, Integer mode) {
     NSLog(@"%s %s/%zd", __func__, mode_str.data, mode);
+    [XNeovimServer.shared.view updateMode:mode];
 }
 
 static void server_ui_set_scroll_region(UI *ui __unused, Integer top, Integer bot,

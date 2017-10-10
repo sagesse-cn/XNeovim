@@ -61,6 +61,10 @@
     
     [self.delegate serverView:self selectionDidChange:selection];
 }
+- (void)updateMode:(NSInteger)mode {
+    
+    [self.delegate serverView:self modeDidChange:mode];
+}
 
 - (NSInteger)handle {
     return _handle;

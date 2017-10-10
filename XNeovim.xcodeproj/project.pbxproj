@@ -56,6 +56,8 @@
 		0CD835581F8B302500773F21 /* XNeovimServerSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD835561F8B302500773F21 /* XNeovimServerSelection.m */; };
 		0CD8355B1F8B32E000773F21 /* XNeovimServerPosition.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD835591F8B32E000773F21 /* XNeovimServerPosition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CD8355C1F8B32E000773F21 /* XNeovimServerPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8355A1F8B32E000773F21 /* XNeovimServerPosition.m */; };
+		0CD835611F8D06E000773F21 /* rd_route.c in Sources */ = {isa = PBXBuildFile; fileRef = 0CD835601F8D06E000773F21 /* rd_route.c */; };
+		0CD835671F8D1A7D00773F21 /* rd_get_func_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 0CD835661F8D1A7C00773F21 /* rd_get_func_impl.c */; };
 		0CDE27911F802CB4005D4E3C /* XNeovimService.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CDE27831F802CB4005D4E3C /* XNeovimService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35463F101C27665100C5544D /* XNeovim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35463F0F1C27665100C5544D /* XNeovim.swift */; };
 /* End PBXBuildFile section */
@@ -96,7 +98,7 @@
 
 /* Begin PBXFileReference section */
 		0C13CE521F8086450014AF7B /* runtime */ = {isa = PBXFileReference; lastKnownFileType = folder; name = runtime; path = neovim/runtime; sourceTree = "<group>"; };
-		0C62895F1F83A57200A57EED /* SourceCodeEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceCodeEditor.swift; sourceTree = "<group>"; };
+		0C62895F1F83A57200A57EED /* SourceCodeEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceCodeEditor.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		0C7735F81F84251400EF582E /* xcode.vim */ = {isa = PBXFileReference; lastKnownFileType = text; path = xcode.vim; sourceTree = "<group>"; };
 		0C7D3CE11F80B24000D26CB3 /* IDEKit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = IDEKit; path = ../Frameworks/IDEKit.framework/Versions/A/IDEKit; sourceTree = DEVELOPER_DIR; };
 		0C7D3CE31F80B2C400D26CB3 /* IDESourceEditor */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = IDESourceEditor; path = ../PlugIns/IDESourceEditor.ideplugin/Contents/MacOS/IDESourceEditor; sourceTree = DEVELOPER_DIR; };
@@ -151,6 +153,9 @@
 		0CD835561F8B302500773F21 /* XNeovimServerSelection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNeovimServerSelection.m; sourceTree = "<group>"; };
 		0CD835591F8B32E000773F21 /* XNeovimServerPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNeovimServerPosition.h; sourceTree = "<group>"; };
 		0CD8355A1F8B32E000773F21 /* XNeovimServerPosition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNeovimServerPosition.m; sourceTree = "<group>"; };
+		0CD8355F1F8D06DF00773F21 /* rd_route.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = rd_route.h; path = rd_route/rd_route.h; sourceTree = "<group>"; };
+		0CD835601F8D06E000773F21 /* rd_route.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rd_route.c; path = rd_route/rd_route.c; sourceTree = "<group>"; };
+		0CD835661F8D1A7C00773F21 /* rd_get_func_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rd_get_func_impl.c; path = rd_route/rd_get_func_impl.c; sourceTree = "<group>"; };
 		0CDE27811F802CB4005D4E3C /* XNeovimService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XNeovimService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CDE27831F802CB4005D4E3C /* XNeovimService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNeovimService.h; sourceTree = "<group>"; };
 		35463F091C27665100C5544D /* XNeovim.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XNeovim.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -305,6 +310,9 @@
 		0C95C7BE1F80836800D477DB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0CD835661F8D1A7C00773F21 /* rd_get_func_impl.c */,
+				0CD835601F8D06E000773F21 /* rd_route.c */,
+				0CD8355F1F8D06DF00773F21 /* rd_route.h */,
 				0C95C7BF1F80836800D477DB /* Info.plist */,
 				0C7D3CED1F81727E00D26CB3 /* Helper.swift */,
 				0C95C7C01F80836800D477DB /* Logger.swift */,
@@ -515,6 +523,7 @@
 				0C9A7D5F1F86D80400D74A99 /* XNeovimServerScreen.m in Sources */,
 				0CD835581F8B302500773F21 /* XNeovimServerSelection.m in Sources */,
 				0C9A7D5B1F86D7F500D74A99 /* XNeovimServer.m in Sources */,
+				0CD835671F8D1A7D00773F21 /* rd_get_func_impl.c in Sources */,
 				0CD3D5DB1F868FF80081EEF9 /* XNeovimServerView.m in Sources */,
 				0CD8355C1F8B32E000773F21 /* XNeovimServerPosition.m in Sources */,
 				0C9A7D581F86D5A200D74A99 /* XNeovimServerInput.m in Sources */,
@@ -534,6 +543,7 @@
 				0C7D3CEA1F81684300D26CB3 /* XNeovimView.swift in Sources */,
 				35463F101C27665100C5544D /* XNeovim.swift in Sources */,
 				0C7D3CEE1F81727E00D26CB3 /* Helper.swift in Sources */,
+				0CD835611F8D06E000773F21 /* rd_route.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,6 +779,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/$(SWIFT_MODULE_NAME)-Bridging.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;

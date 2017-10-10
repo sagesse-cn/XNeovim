@@ -80,6 +80,17 @@ internal class XNeovimView: NSObject, XNeovimServerViewDelegate {
             self.editorContentView.setAccessibilitySelectedTextRange(.init(location: offset, length: 0))
         }
     }
+    func serverView(_ serverView: XNeovimServerView!, modeDidChange mode: Int) {
+        logger.debug?.write("\(mode)")
+
+        DispatchQueue.main.async {
+            if mode == 2 {
+                unsafeBitCast(self.editorView as AnyObject, to: SourceEditorView.self).setCursorStyle(0)
+            } else {
+                unsafeBitCast(self.editorView as AnyObject, to: SourceEditorView.self).setCursorStyle(1)
+            }
+        }
+    }
     
     let plugin: XNeovim
     let server: XNeovimServer

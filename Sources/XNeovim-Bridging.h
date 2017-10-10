@@ -11,6 +11,8 @@
 
 #import <AppKit/AppKit.h>
 
+#import "rd_route.h"
+
 #import "DVTKit.h"
 #import "IDEKit.h"
 
