@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0C13CE541F8086520014AF7B /* runtime in Resources */ = {isa = PBXBuildFile; fileRef = 0C13CE521F8086450014AF7B /* runtime */; };
 		0C6289601F83A57200A57EED /* SourceCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C62895F1F83A57200A57EED /* SourceCodeEditor.swift */; };
-		0C7735F91F84251400EF582E /* xcode.vim in Resources */ = {isa = PBXBuildFile; fileRef = 0C7735F81F84251400EF582E /* xcode.vim */; };
 		0C7735FB1F8427C200EF582E /* xcode.vim in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0C7735F81F84251400EF582E /* xcode.vim */; };
 		0C7D3CE21F80B24500D26CB3 /* IDEKit in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7D3CE11F80B24000D26CB3 /* IDEKit */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C7D3CE41F80B2D200D26CB3 /* IDESourceEditor in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7D3CE31F80B2C400D26CB3 /* IDESourceEditor */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -20,17 +19,6 @@
 		0C7D3CEE1F81727E00D26CB3 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7D3CED1F81727E00D26CB3 /* Helper.swift */; };
 		0C8F7B401F822F51006C356E /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8F7B3F1F822F50006C356E /* libiconv.tbd */; };
 		0C95C7501F80314600D477DB /* XNeovimService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CDE27811F802CB4005D4E3C /* XNeovimService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0C95C78D1F80407100D477DB /* libintl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C78C1F80407100D477DB /* libintl.a */; };
-		0C95C7A01F807DDD00D477DB /* libjemalloc_pic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C7971F807DB000D477DB /* libjemalloc_pic.a */; };
-		0C95C7A11F807DDD00D477DB /* libjemalloc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C79D1F807DB100D477DB /* libjemalloc.a */; };
-		0C95C7A21F807DDD00D477DB /* libluajit-5.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C79B1F807DB100D477DB /* libluajit-5.1.a */; };
-		0C95C7A31F807DDD00D477DB /* libluv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C79C1F807DB100D477DB /* libluv.a */; };
-		0C95C7A41F807DDD00D477DB /* libmsgpackc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C79A1F807DB100D477DB /* libmsgpackc.a */; };
-		0C95C7A51F807DDD00D477DB /* libtermkey.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C7991F807DB000D477DB /* libtermkey.a */; };
-		0C95C7A61F807DDD00D477DB /* libunibilium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C79E1F807DB100D477DB /* libunibilium.a */; };
-		0C95C7A71F807DDD00D477DB /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C7981F807DB000D477DB /* libuv.a */; };
-		0C95C7A81F807DDD00D477DB /* libvterm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C79F1F807DB100D477DB /* libvterm.a */; };
-		0C95C7AA1F807DF500D477DB /* libnvim.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C7A91F807DF200D477DB /* libnvim.a */; };
 		0C95C7AF1F8082F900D477DB /* SourceEditor in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C7AB1F8082B300D477DB /* SourceEditor */; };
 		0C95C7B11F8082F900D477DB /* DVTKit in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C95C7AC1F8082BF00D477DB /* DVTKit */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C95C7D21F8083A200D477DB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C95C7C01F80836800D477DB /* Logger.swift */; };
@@ -42,12 +30,23 @@
 		0C9A7D5F1F86D80400D74A99 /* XNeovimServerScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A7D5D1F86D80400D74A99 /* XNeovimServerScreen.m */; };
 		0C9A7D601F86D80400D74A99 /* XNeovimServerScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C9A7D5E1F86D80400D74A99 /* XNeovimServerScreen.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CB104C71EEFF589002CB7FA /* XNeovimService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CDE27811F802CB4005D4E3C /* XNeovimService.framework */; };
+		0CB797EF1F8E548100A7D8F4 /* libnvim.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB797E61F8E547900A7D8F4 /* libnvim.a */; };
+		0CB797F01F8E548100A7D8F4 /* libjemalloc_pic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB797EB1F8E547900A7D8F4 /* libjemalloc_pic.a */; };
+		0CB797F11F8E548100A7D8F4 /* libjemalloc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB797EE1F8E547A00A7D8F4 /* libjemalloc.a */; };
+		0CB797F21F8E548100A7D8F4 /* libluajit-5.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB797EC1F8E547900A7D8F4 /* libluajit-5.1.a */; };
+		0CB797F31F8E548100A7D8F4 /* libluv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB797ED1F8E547A00A7D8F4 /* libluv.a */; };
+		0CB797F41F8E548100A7D8F4 /* libmsgpackc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB797E71F8E547900A7D8F4 /* libmsgpackc.a */; };
+		0CB797F51F8E548100A7D8F4 /* libtermkey.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB797E81F8E547900A7D8F4 /* libtermkey.a */; };
+		0CB797F61F8E548100A7D8F4 /* libunibilium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB797E51F8E547900A7D8F4 /* libunibilium.a */; };
+		0CB797F71F8E548100A7D8F4 /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB797E91F8E547900A7D8F4 /* libuv.a */; };
+		0CB797F81F8E548100A7D8F4 /* libvterm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB797EA1F8E547900A7D8F4 /* libvterm.a */; };
 		0CD3D5DB1F868FF80081EEF9 /* XNeovimServerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD3D5D31F868FF70081EEF9 /* XNeovimServerView.m */; };
 		0CD3D5DC1F868FF80081EEF9 /* XNeovimBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD3D5D41F868FF70081EEF9 /* XNeovimBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CD3D5DD1F868FF80081EEF9 /* XNeovimBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD3D5D51F868FF80081EEF9 /* XNeovimBuffer.m */; };
 		0CD3D5DE1F868FF80081EEF9 /* XNeovimServerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD3D5D61F868FF80081EEF9 /* XNeovimServerWindow.m */; };
 		0CD3D5E01F868FF80081EEF9 /* XNeovimServerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD3D5D81F868FF80081EEF9 /* XNeovimServerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CD3D5E11F868FF80081EEF9 /* XNeovimServerWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD3D5D91F868FF80081EEF9 /* XNeovimServerWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CD48BF01F8DD8D700D9FE20 /* libintl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CD48BED1F8DD79000D9FE20 /* libintl.a */; };
 		0CD8354E1F8B1DFE00773F21 /* XNeovimServerScreen+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD835481F8B1DFD00773F21 /* XNeovimServerScreen+Internal.h */; };
 		0CD835501F8B1DFE00773F21 /* XNeovimServerWindow+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD8354A1F8B1DFD00773F21 /* XNeovimServerWindow+Internal.h */; };
 		0CD835511F8B1DFE00773F21 /* XNeovimServerView+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD8354B1F8B1DFE00773F21 /* XNeovimServerView+Internal.h */; };
@@ -110,17 +109,6 @@
 		0C8F7B371F822E77006C356E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C8F7B3F1F822F50006C356E /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		0C95C7511F8032A100D477DB /* neovim */ = {isa = PBXFileReference; lastKnownFileType = folder; path = neovim; sourceTree = "<group>"; };
-		0C95C78C1F80407100D477DB /* libintl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libintl.a; path = libintl/lib/libintl.a; sourceTree = "<group>"; };
-		0C95C7971F807DB000D477DB /* libjemalloc_pic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjemalloc_pic.a; path = ../neovim/.deps/usr/lib/libjemalloc_pic.a; sourceTree = "<group>"; };
-		0C95C7981F807DB000D477DB /* libuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libuv.a; path = ../neovim/.deps/usr/lib/libuv.a; sourceTree = "<group>"; };
-		0C95C7991F807DB000D477DB /* libtermkey.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtermkey.a; path = ../neovim/.deps/usr/lib/libtermkey.a; sourceTree = "<group>"; };
-		0C95C79A1F807DB100D477DB /* libmsgpackc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmsgpackc.a; path = ../neovim/.deps/usr/lib/libmsgpackc.a; sourceTree = "<group>"; };
-		0C95C79B1F807DB100D477DB /* libluajit-5.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libluajit-5.1.a"; path = "../neovim/.deps/usr/lib/libluajit-5.1.a"; sourceTree = "<group>"; };
-		0C95C79C1F807DB100D477DB /* libluv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libluv.a; path = ../neovim/.deps/usr/lib/libluv.a; sourceTree = "<group>"; };
-		0C95C79D1F807DB100D477DB /* libjemalloc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjemalloc.a; path = ../neovim/.deps/usr/lib/libjemalloc.a; sourceTree = "<group>"; };
-		0C95C79E1F807DB100D477DB /* libunibilium.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libunibilium.a; path = ../neovim/.deps/usr/lib/libunibilium.a; sourceTree = "<group>"; };
-		0C95C79F1F807DB100D477DB /* libvterm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvterm.a; path = ../neovim/.deps/usr/lib/libvterm.a; sourceTree = "<group>"; };
-		0C95C7A91F807DF200D477DB /* libnvim.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libnvim.a; path = ../neovim/build/lib/libnvim.a; sourceTree = "<group>"; };
 		0C95C7AB1F8082B300D477DB /* SourceEditor */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = SourceEditor; path = ../SharedFrameworks/SourceEditor.framework/Versions/A/SourceEditor; sourceTree = DEVELOPER_DIR; };
 		0C95C7AC1F8082BF00D477DB /* DVTKit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = DVTKit; path = ../SharedFrameworks/DVTKit.framework/Versions/A/DVTKit; sourceTree = DEVELOPER_DIR; };
 		0C95C7B51F80836800D477DB /* DVTFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFoundation.h; sourceTree = "<group>"; };
@@ -139,12 +127,23 @@
 		0C9A7D5A1F86D7F400D74A99 /* XNeovimServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNeovimServer.h; sourceTree = "<group>"; };
 		0C9A7D5D1F86D80400D74A99 /* XNeovimServerScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNeovimServerScreen.m; sourceTree = "<group>"; };
 		0C9A7D5E1F86D80400D74A99 /* XNeovimServerScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNeovimServerScreen.h; sourceTree = "<group>"; };
+		0CB797E51F8E547900A7D8F4 /* libunibilium.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libunibilium.a; path = ../neovim/.deps/usr/lib/libunibilium.a; sourceTree = "<group>"; };
+		0CB797E61F8E547900A7D8F4 /* libnvim.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libnvim.a; path = ../neovim/build/lib/libnvim.a; sourceTree = "<group>"; };
+		0CB797E71F8E547900A7D8F4 /* libmsgpackc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmsgpackc.a; path = ../neovim/.deps/usr/lib/libmsgpackc.a; sourceTree = "<group>"; };
+		0CB797E81F8E547900A7D8F4 /* libtermkey.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtermkey.a; path = ../neovim/.deps/usr/lib/libtermkey.a; sourceTree = "<group>"; };
+		0CB797E91F8E547900A7D8F4 /* libuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libuv.a; path = ../neovim/.deps/usr/lib/libuv.a; sourceTree = "<group>"; };
+		0CB797EA1F8E547900A7D8F4 /* libvterm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvterm.a; path = ../neovim/.deps/usr/lib/libvterm.a; sourceTree = "<group>"; };
+		0CB797EB1F8E547900A7D8F4 /* libjemalloc_pic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjemalloc_pic.a; path = ../neovim/.deps/usr/lib/libjemalloc_pic.a; sourceTree = "<group>"; };
+		0CB797EC1F8E547900A7D8F4 /* libluajit-5.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libluajit-5.1.a"; path = "../neovim/.deps/usr/lib/libluajit-5.1.a"; sourceTree = "<group>"; };
+		0CB797ED1F8E547A00A7D8F4 /* libluv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libluv.a; path = ../neovim/.deps/usr/lib/libluv.a; sourceTree = "<group>"; };
+		0CB797EE1F8E547A00A7D8F4 /* libjemalloc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjemalloc.a; path = ../neovim/.deps/usr/lib/libjemalloc.a; sourceTree = "<group>"; };
 		0CD3D5D31F868FF70081EEF9 /* XNeovimServerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNeovimServerView.m; sourceTree = "<group>"; };
 		0CD3D5D41F868FF70081EEF9 /* XNeovimBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNeovimBuffer.h; sourceTree = "<group>"; };
 		0CD3D5D51F868FF80081EEF9 /* XNeovimBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNeovimBuffer.m; sourceTree = "<group>"; };
 		0CD3D5D61F868FF80081EEF9 /* XNeovimServerWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNeovimServerWindow.m; sourceTree = "<group>"; };
 		0CD3D5D81F868FF80081EEF9 /* XNeovimServerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNeovimServerView.h; sourceTree = "<group>"; };
 		0CD3D5D91F868FF80081EEF9 /* XNeovimServerWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNeovimServerWindow.h; sourceTree = "<group>"; };
+		0CD48BED1F8DD79000D9FE20 /* libintl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libintl.a; path = ../../../../usr/local/Cellar/gettext/0.19.8.1/lib/libintl.a; sourceTree = "<group>"; };
 		0CD835481F8B1DFD00773F21 /* XNeovimServerScreen+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XNeovimServerScreen+Internal.h"; sourceTree = "<group>"; };
 		0CD8354A1F8B1DFD00773F21 /* XNeovimServerWindow+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XNeovimServerWindow+Internal.h"; sourceTree = "<group>"; };
 		0CD8354B1F8B1DFE00773F21 /* XNeovimServerView+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XNeovimServerView+Internal.h"; sourceTree = "<group>"; };
@@ -182,18 +181,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CD48BF01F8DD8D700D9FE20 /* libintl.a in Frameworks */,
 				0C8F7B401F822F51006C356E /* libiconv.tbd in Frameworks */,
-				0C95C7A71F807DDD00D477DB /* libuv.a in Frameworks */,
-				0C95C7A51F807DDD00D477DB /* libtermkey.a in Frameworks */,
-				0C95C7A41F807DDD00D477DB /* libmsgpackc.a in Frameworks */,
-				0C95C7A61F807DDD00D477DB /* libunibilium.a in Frameworks */,
-				0C95C78D1F80407100D477DB /* libintl.a in Frameworks */,
-				0C95C7AA1F807DF500D477DB /* libnvim.a in Frameworks */,
-				0C95C7A01F807DDD00D477DB /* libjemalloc_pic.a in Frameworks */,
-				0C95C7A81F807DDD00D477DB /* libvterm.a in Frameworks */,
-				0C95C7A31F807DDD00D477DB /* libluv.a in Frameworks */,
-				0C95C7A11F807DDD00D477DB /* libjemalloc.a in Frameworks */,
-				0C95C7A21F807DDD00D477DB /* libluajit-5.1.a in Frameworks */,
+				0CB797F01F8E548100A7D8F4 /* libjemalloc_pic.a in Frameworks */,
+				0CB797F11F8E548100A7D8F4 /* libjemalloc.a in Frameworks */,
+				0CB797F41F8E548100A7D8F4 /* libmsgpackc.a in Frameworks */,
+				0CB797EF1F8E548100A7D8F4 /* libnvim.a in Frameworks */,
+				0CB797F81F8E548100A7D8F4 /* libvterm.a in Frameworks */,
+				0CB797F61F8E548100A7D8F4 /* libunibilium.a in Frameworks */,
+				0CB797F51F8E548100A7D8F4 /* libtermkey.a in Frameworks */,
+				0CB797F71F8E548100A7D8F4 /* libuv.a in Frameworks */,
+				0CB797F31F8E548100A7D8F4 /* libluv.a in Frameworks */,
+				0CB797F21F8E548100A7D8F4 /* libluajit-5.1.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +247,17 @@
 		0C95C7551F80398300D477DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0CD48BED1F8DD79000D9FE20 /* libintl.a */,
+				0CB797E61F8E547900A7D8F4 /* libnvim.a */,
+				0CB797EB1F8E547900A7D8F4 /* libjemalloc_pic.a */,
+				0CB797EE1F8E547A00A7D8F4 /* libjemalloc.a */,
+				0CB797EC1F8E547900A7D8F4 /* libluajit-5.1.a */,
+				0CB797ED1F8E547A00A7D8F4 /* libluv.a */,
+				0CB797E71F8E547900A7D8F4 /* libmsgpackc.a */,
+				0CB797E81F8E547900A7D8F4 /* libtermkey.a */,
+				0CB797E51F8E547900A7D8F4 /* libunibilium.a */,
+				0CB797E91F8E547900A7D8F4 /* libuv.a */,
+				0CB797EA1F8E547900A7D8F4 /* libvterm.a */,
 				0C8F7B3F1F822F50006C356E /* libiconv.tbd */,
 				0C95C7AB1F8082B300D477DB /* SourceEditor */,
 				0C7D3CE51F80B5F100D26CB3 /* DVTFoundation */,
@@ -257,25 +267,6 @@
 				0C7D3CE71F80B99800D26CB3 /* IDEPegasusSourceEditor */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		0C95C7801F80403900D477DB /* Librarys */ = {
-			isa = PBXGroup;
-			children = (
-				0C95C7A91F807DF200D477DB /* libnvim.a */,
-				0C95C7971F807DB000D477DB /* libjemalloc_pic.a */,
-				0C95C79D1F807DB100D477DB /* libjemalloc.a */,
-				0C95C79B1F807DB100D477DB /* libluajit-5.1.a */,
-				0C95C79C1F807DB100D477DB /* libluv.a */,
-				0C95C79A1F807DB100D477DB /* libmsgpackc.a */,
-				0C95C7991F807DB000D477DB /* libtermkey.a */,
-				0C95C79E1F807DB100D477DB /* libunibilium.a */,
-				0C95C7981F807DB000D477DB /* libuv.a */,
-				0C95C79F1F807DB100D477DB /* libvterm.a */,
-				0C95C78C1F80407100D477DB /* libintl.a */,
-			);
-			name = Librarys;
-			path = Service/Librarys;
 			sourceTree = "<group>";
 		};
 		0C95C7B31F80836800D477DB /* Private */ = {
@@ -339,7 +330,6 @@
 				35463F1B1C276ABA00C5544D /* Documentation */,
 				0CDE27821F802CB4005D4E3C /* Service */,
 				35463F0B1C27665100C5544D /* Sources */,
-				0C95C7801F80403900D477DB /* Librarys */,
 				0C95C7551F80398300D477DB /* Frameworks */,
 				35463F0A1C27665100C5544D /* Products */,
 			);
@@ -492,7 +482,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C7735F91F84251400EF582E /* xcode.vim in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,21 +571,21 @@
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Service/Librarys/libintl/include",
 					"$(PROJECT_DIR)/Service/neovim/src",
-					"$(PROJECT_DIR)/Service/neovim//build/config",
-					"$(PROJECT_DIR)/Service/neovim//build/include",
+					"$(PROJECT_DIR)/Service/neovim/build/config",
+					"$(PROJECT_DIR)/Service/neovim/build/include",
 					"$(PROJECT_DIR)/Service/neovim/build/src/nvim/auto",
 					"$(PROJECT_DIR)/Service/neovim/.deps/usr/include",
+					/usr/local/opt/gettext/include/,
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Service/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Service/Librarys/libintl/lib",
 					"$(PROJECT_DIR)/Service/neovim/.deps/usr/lib",
 					"$(PROJECT_DIR)/Service/neovim/build/lib",
+					/usr/local/opt/gettext/lib/,
 					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rudedogg.xneovim.service;
@@ -635,21 +624,21 @@
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Service/Librarys/libintl/include",
 					"$(PROJECT_DIR)/Service/neovim/src",
-					"$(PROJECT_DIR)/Service/neovim//build/config",
-					"$(PROJECT_DIR)/Service/neovim//build/include",
+					"$(PROJECT_DIR)/Service/neovim/build/config",
+					"$(PROJECT_DIR)/Service/neovim/build/include",
 					"$(PROJECT_DIR)/Service/neovim/build/src/nvim/auto",
 					"$(PROJECT_DIR)/Service/neovim/.deps/usr/include",
+					/usr/local/opt/gettext/include/,
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Service/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Service/Librarys/libintl/lib",
 					"$(PROJECT_DIR)/Service/neovim/.deps/usr/lib",
 					"$(PROJECT_DIR)/Service/neovim/build/lib",
+					/usr/local/opt/gettext/lib/,
 					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rudedogg.xneovim.service;

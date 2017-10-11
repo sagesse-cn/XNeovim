@@ -11,7 +11,7 @@ import XNeovimService
 
 internal class XNeovimView: NSObject, XNeovimServerViewDelegate {
     
-    internal init(editor: IDEEditor, editorView: NSView, editorContentView: NSView) {
+    internal init(editor: IDEEditor, editorView: SourceEditorView, editorContentView: NSView) {
         // Save document context
         self.editor = editor
         self.editorView = editorView
@@ -63,21 +63,21 @@ internal class XNeovimView: NSObject, XNeovimServerViewDelegate {
             return _selection
         }
     }
-    
+    var alu: Bool = true
     func serverView(_ serverView: XNeovimServerView, selectionDidChange selection: XNeovimServerSelection) {
         //
         _selection = selection
         
-        let startRow = selection.start.row
-        let startColumn = selection.start.column
+        let start = SourceEditorPosition(line: selection.start.row - 1, col: selection.start.column)
+        let end = SourceEditorPosition(line: selection.end.row - 1, col: selection.end.column)
+        let range = SourceEditorRange(start: start, end: end)
         
-        let range = editorContentView.accessibilityRange(forLine: startRow - 1)
-        let offset = range.location + max(min(startColumn, range.length - 2), 0)
-        
-        logger.debug?.write("\(startRow):\(startColumn) = \(offset) % \(range)")
+        logger.debug?.write(range)
         
         DispatchQueue.main.async {
-            self.editorContentView.setAccessibilitySelectedTextRange(.init(location: offset, length: 0))
+            //self.editorView.setSelectedRange(.init(start: start, end: end), modifiers: .unknow0)
+            self.editorView.selectTextRange(range, scrollPlacement: 0, alwaysScroll: true)
+            //self.editorContentView.setAccessibilitySelectedTextRange(.init(location: offset, length: 0))
         }
     }
     func serverView(_ serverView: XNeovimServerView!, modeDidChange mode: Int) {
@@ -85,9 +85,9 @@ internal class XNeovimView: NSObject, XNeovimServerViewDelegate {
 
         DispatchQueue.main.async {
             if mode == 2 {
-                unsafeBitCast(self.editorView as AnyObject, to: SourceEditorView.self).setCursorStyle(0)
+                self.editorView.setCursorStyle(0)
             } else {
-                unsafeBitCast(self.editorView as AnyObject, to: SourceEditorView.self).setCursorStyle(1)
+                self.editorView.setCursorStyle(1)
             }
         }
     }
@@ -98,7 +98,7 @@ internal class XNeovimView: NSObject, XNeovimServerViewDelegate {
     let statusBar: XNeovimStatusBar
     
     unowned let editor: IDEEditor
-    unowned let editorView: NSView
+    unowned let editorView: SourceEditorView
     unowned let editorContentView: NSView
     
     private var _selection: XNeovimServerSelection = .init()

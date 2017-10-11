@@ -220,7 +220,7 @@ static void server_ui_clear(UI *ui __unused) {
 }
 
 static void server_ui_eol_clear(UI *ui __unused) {
-    NSLog(@"%s %zd, %zd", __func__, ui_current_row(), ui_current_col());
+    //NSLog(@"%s %zd, %zd", __func__, ui_current_row(), ui_current_col());
     
     //    [_neovim_server sendMessageWithId:NeoVimServerMsgIdEolClear];
 }

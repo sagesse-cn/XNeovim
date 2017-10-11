@@ -32,17 +32,6 @@ internal class SourceCodeEditor: IDEEditor {
     @objc dynamic func xvim_viewDidLoad() {
         self.xvim_viewDidLoad()
         
-//        if ix == 0 {
-//            let o1 = rd_function_byname("_xvim_T012SourceEditor0aB4ViewC11cursorStyleAA0ab6CursorE0Ofs", nil)
-//            let o2 = rd_function_byname("_xvim_T012SourceEditor0aB4ViewC11cursorStyleAA0ab6CursorE0Ofg", nil)
-//            let n1 = rd_function_byname("_T012SourceEditor0aB4ViewC11cursorStyleAA0ab6CursorE0Ofs", nil)
-//            let n2 = rd_function_byname("_T012SourceEditor0aB4ViewC11cursorStyleAA0ab6CursorE0Ofg", nil)
-//
-//            print(rd_route(o1, n1, nil))
-//            print(rd_route(o2, n2, nil))
-//            ix = 1
-//        }
-        
         // Initialize neovim window
         let view = XNeovimView(editor: self, editorView: sourceEditorView, editorContentView: sourceEditorView.contentView)
         
@@ -67,6 +56,11 @@ internal class SourceCodeEditor: IDEEditor {
 
 //        let ptr = rd_function_byname("_T012SourceEditor0aB4ViewC11cursorStyleAA0ab6CursorE0Ofs", nil)
 //        logger.debug?.write(ptr)
+        
+        NotificationCenter.default.addObserver(forName: SourceCodeEditor.dataSourceWillDidChangeNotification, object: nil, queue: nil) { notification in
+            // forward to xvim_selectionDidChange
+            //(notification.object as AnyObject?)?.xvim_selectionDidChange?(notification)
+        }
         
         // Add to change observer
         SourceCodeEditor.selectionDidChangeObserver()
@@ -105,6 +99,11 @@ struct SourceEditorRange: CustomStringConvertible {
 
 //cursorStyle: SourceEditor.SourceEditorCursorStyle.block
 
+//enum SourceEditorSelectionModifiers: Int {
+//    case unknow0
+//    case unknow1
+//    case unknow2 // block
+//}
 enum SourceEditorSelection {
     
     case single(range: SourceEditorRange, modifiers: Int)
@@ -115,271 +114,422 @@ enum SourceEditorSelection {
 
 internal class SourceEditorView: NSView {
     
-    @NSManaged var scrollView: NSScrollView // SourceEditor.SourceEditorScrollView
-    @NSManaged var contentView: SourceEditorContentView // SourceEditor.SourceEditorContentView
+
+
     
-//    @objc dynamic func xvim_keyUp(_ event: NSEvent) {
-//        return self.xvim_window.map {
-//            return $0.xvim_keyUp(event).map {
-//                return self.xvim_keyUp($0)
-//            }
-//        } ?? self.xvim_keyUp(event)
-//    }
-//
-    @objc dynamic func xvim_keyDown(_ event: NSEvent) {
-        return self.xvim_window.map {
-            return $0.keyDown(event).map {
-                return self.xvim_keyDown($0)
-            }
-        } ?? self.xvim_keyDown(event)
-    }
+    @nonobjc func unknow_000() {}//SourceEditor`SourceEditor.SourceEditorView.delegate.getter : weak Swift.Optional<SourceEditor.SourceEditorViewDelegate>
+    @nonobjc func unknow_001() {}//SourceEditor`SourceEditor.SourceEditorView.delegate.setter : weak Swift.Optional<SourceEditor.SourceEditorViewDelegate>
+    @nonobjc func unknow_002() {}//SourceEditor`SourceEditor.SourceEditorView.delegate.materializeForSet : weak Swift.Optional<SourceEditor.SourceEditorViewDelegate>
+    @nonobjc func unknow_003() {}//SourceEditor`SourceEditor.SourceEditorView.contentViewOffset.getter : CoreGraphics.CGFloat
+    @nonobjc func unknow_004() {}//SourceEditor`SourceEditor.SourceEditorView.contentViewOffset.setter : CoreGraphics.CGFloat
+    @nonobjc func unknow_005() {}//SourceEditor`SourceEditor.SourceEditorView.contentViewOffset.materializeForSet : CoreGraphics.CGFloat
+    @nonobjc func unknow_006() {}//SourceEditor`SourceEditor.SourceEditorView.structuredEditingController.getter : Swift.Optional<SourceEditor.StructuredEditingController>
+    @nonobjc func unknow_007() {}//SourceEditor`SourceEditor.SourceEditorView.structuredEditingController.setter : Swift.Optional<SourceEditor.StructuredEditingController>
+    @nonobjc func unknow_008() {}//SourceEditor`SourceEditor.SourceEditorView.structuredEditingController.materializeForSet : Swift.Optional<SourceEditor.StructuredEditingController>
+    @nonobjc func unknow_009() {}//SourceEditor`SourceEditor.SourceEditorView.dataSource.getter : SourceEditor.SourceEditorDataSource
+    @nonobjc func unknow_010() {}//SourceEditor`SourceEditor.SourceEditorView.dataSource.setter : SourceEditor.SourceEditorDataSource
+    @nonobjc func unknow_011() {}//SourceEditor`SourceEditor.SourceEditorView.dataSource.materializeForSet : SourceEditor.SourceEditorDataSource
+    @nonobjc func unknow_012() {}
+    @nonobjc func unknow_013() {}
+    @nonobjc func unknow_014() {}
+    @nonobjc func unknow_015() {}
+    @nonobjc func unknow_016() {}
+    @nonobjc func unknow_017() {}
+    @nonobjc func unknow_018() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.init(frame: __C.CGRect, sourceEditorScrollViewClass: __ObjC.SourceEditorScrollView.Type) -> IDEPegasusSourceEditor.SourceCodeEditorView
+    @nonobjc func unknow_019() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.init(coder: __ObjC.NSCoder, sourceEditorScrollViewClass: __ObjC.SourceEditorScrollView.Type) -> Swift.Optional<IDEPegasusSourceEditor.SourceCodeEditorView>
+    @nonobjc func unknow_020() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.__allocating_init(coder: __ObjC.NSCoder) -> Swift.Optional<IDEPegasusSourceEditor.SourceCodeEditorView>
+    @nonobjc func unknow_021() {}//SourceEditor`SourceEditor.SourceEditorView.(commonInit in _21FB12A7D498BCC8AE8B7D65E086EAF9)() -> ()
+    @nonobjc func unknow_022() {}//SourceEditor`SourceEditor.SourceEditorView.(updateSelectionManagerIsActive in _21FB12A7D498BCC8AE8B7D65E086EAF9)() -> ()
+    @nonobjc func unknow_023() {}//SourceEditor`SourceEditor.SourceEditorView._wantsKeyDownForEvent(__ObjC.NSEvent) -> ObjectiveC.ObjCBool
+    @nonobjc func unknow_024() {}//SourceEditor`SourceEditor.SourceEditorView.lineWrappingStyle.getter : Swift.Optional<SourceEditor.LineWrappingStyle>
+    @nonobjc func unknow_025() {}//SourceEditor`SourceEditor.SourceEditorView.lineWrappingStyle.setter : Swift.Optional<SourceEditor.LineWrappingStyle>
+    @nonobjc func unknow_026() {}//SourceEditor`SourceEditor.SourceEditorView.lineWrappingStyle.materializeForSet : Swift.Optional<SourceEditor.LineWrappingStyle>
+    @nonobjc func unknow_027() {}//SourceEditor`SourceEditor.SourceEditorView.editorViewSnapshots(in: Swift.Array<__C.CGRect>) -> Swift.Optional<Swift.Array<__ObjC.NSImage>>
+    @nonobjc func unknow_028() {}//SourceEditor`SourceEditor.SourceEditorView.setupStructuredEditingController() -> ()
+    @nonobjc func unknow_029() {}//SourceEditor`SourceEditor.SourceEditorView.selectStructureAtPosition(SourceEditor.SourceEditorPosition) -> ()
+    @nonobjc func unknow_030() {}
+    @nonobjc func unknow_031() {}
+    @nonobjc func unknow_032() {}
+    @nonobjc func unknow_033() {}//SourceEditor`SourceEditor.SourceEditorView.trimTrailingWhitespaceStyle.getter : Swift.Optional<SourceEditor.TrimTrailingWhitespaceStyle>
+    @nonobjc func unknow_034() {}//SourceEditor`SourceEditor.SourceEditorView.trimTrailingWhitespaceStyle.setter : Swift.Optional<SourceEditor.TrimTrailingWhitespaceStyle>
+    @nonobjc func unknow_035() {}//SourceEditor`SourceEditor.SourceEditorView.trimTrailingWhitespaceStyle.materializeForSet : Swift.Optional<SourceEditor.TrimTrailingWhitespaceStyle>
+    @nonobjc func unknow_036() {}
+    @nonobjc func unknow_037() {}//SourceEditor`SourceEditor.SourceEditorView.(configureEditAssistant in _21FB12A7D498BCC8AE8B7D65E086EAF9)() -> ()
+    @nonobjc func unknow_038() {}//SourceEditor`SourceEditor.SourceEditorView.colorTheme.getter : SourceEditor.SourceEditorColorTheme
+    @nonobjc func unknow_039() {}//SourceEditor`SourceEditor.SourceEditorView.colorTheme.setter : SourceEditor.SourceEditorColorTheme
+    @nonobjc func unknow_040() {}//SourceEditor`SourceEditor.SourceEditorView.colorTheme.materializeForSet : SourceEditor.SourceEditorColorTheme
+    @nonobjc func unknow_041() {}//SourceEditor`SourceEditor.SourceEditorView.fontTheme.getter : SourceEditor.SourceEditorFontTheme
+    @nonobjc func unknow_042() {}//SourceEditor`SourceEditor.SourceEditorView.fontTheme.setter : SourceEditor.SourceEditorFontTheme
+    @nonobjc func unknow_043() {}//SourceEditor`SourceEditor.SourceEditorView.fontTheme.materializeForSet : SourceEditor.SourceEditorFontTheme
+    @nonobjc func unknow_044() {}//SourceEditor`SourceEditor.SourceEditorView.showInvisiblesTheme.getter : Swift.Optional<SourceEditor.ShowInvisiblesTheme>
+    @nonobjc func unknow_045() {}//SourceEditor`SourceEditor.SourceEditorView.showInvisiblesTheme.setter : Swift.Optional<SourceEditor.ShowInvisiblesTheme>
+    @nonobjc func unknow_046() {}//SourceEditor`SourceEditor.SourceEditorView.showInvisiblesTheme.materializeForSet : Swift.Optional<SourceEditor.ShowInvisiblesTheme>
+    @nonobjc func unknow_047() {}//SourceEditor`SourceEditor.SourceEditorView.fontSmoothingAttributes.getter : SourceEditor.SourceEditorFontSmoothingAttributes
+    @nonobjc func unknow_048() {}//SourceEditor`SourceEditor.SourceEditorView.fontSmoothingAttributes.setter : SourceEditor.SourceEditorFontSmoothingAttributes
+    @nonobjc func unknow_049() {}//SourceEditor`SourceEditor.SourceEditorView.fontSmoothingAttributes.materializeForSet : SourceEditor.SourceEditorFontSmoothingAttributes
+    @nonobjc func unknow_050() {}//SourceEditor`SourceEditor.SourceEditorView.automaticallyAdjustsContentMargins.getter : Swift.Bool
+    @nonobjc func unknow_051() {}//SourceEditor`SourceEditor.SourceEditorView.automaticallyAdjustsContentMargins.setter : Swift.Bool
+    @nonobjc func unknow_052() {}//SourceEditor`SourceEditor.SourceEditorView.automaticallyAdjustsContentMargins.materializeForSet : Swift.Bool
+    @nonobjc func unknow_053() {}//SourceEditor`SourceEditor.SourceEditorView.cursorStyle.getter : SourceEditor.SourceEditorCursorStyle
+    @nonobjc func setCursorStyle(_: Int) {}//SourceEditor`SourceEditor.SourceEditorView.cursorStyle.setter : SourceEditor.SourceEditorCursorStyle
+    @nonobjc func unknow_055() {}//SourceEditor`SourceEditor.SourceEditorView.cursorStyle.materializeForSet : SourceEditor.SourceEditorCursorStyle
+    @nonobjc func unknow_056() {}//SourceEditor`SourceEditor.SourceEditorView.invalidateCursorRects() -> ()
+    @nonobjc func unknow_057() {}//SourceEditor`SourceEditor.SourceEditorView.contentRectForCursor() -> __C.CGRect
+    @nonobjc func unknow_058() {}//SourceEditor`SourceEditor.SourceEditorView.(cursorForContentRect in _21FB12A7D498BCC8AE8B7D65E086EAF9)() -> __ObjC.NSCursor
+    @nonobjc func unknow_059() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.mouseCursorForStructuredSelection(with: Swift.Optional<__ObjC.NSEvent>) -> Swift.Optional<__ObjC.NSCursor>
+    @nonobjc func unknow_060() {}//SourceEditor`SourceEditor.SourceEditorView.lineAnnotations.getter : Swift.Array<SourceEditor.SourceEditorLineAnnotation>
+    @nonobjc func unknow_061() {}//SourceEditor`SourceEditor.SourceEditorView.lineAnnotations.setter : Swift.Array<SourceEditor.SourceEditorLineAnnotation>
+    @nonobjc func unknow_062() {}//SourceEditor`SourceEditor.SourceEditorView.lineAnnotations.materializeForSet : Swift.Array<SourceEditor.SourceEditorLineAnnotation>
+    @nonobjc func unknow_063() {}//SourceEditor`SourceEditor.SourceEditorView.lineAnnotationManager.getter : SourceEditor.SourceEditorLineAnnotationManager
+    @nonobjc func unknow_064() {}//SourceEditor`SourceEditor.SourceEditorView.lineAnnotationManager.setter : SourceEditor.SourceEditorLineAnnotationManager
+    @nonobjc func unknow_065() {}//SourceEditor`SourceEditor.SourceEditorView.lineAnnotationManager.materializeForSet : SourceEditor.SourceEditorLineAnnotationManager
+    @nonobjc func unknow_066() {}//SourceEditor`SourceEditor.SourceEditorView.expandLineAnnotationsOnLine(Swift.Int, animated: Swift.Bool) -> ()
+    @nonobjc func unknow_067() {}//SourceEditor`SourceEditor.SourceEditorView.allowLineAnnotationAnimations.getter : Swift.Bool
+    @nonobjc func unknow_068() {}//SourceEditor`SourceEditor.SourceEditorView.allowLineAnnotationAnimations.setter : Swift.Bool
+    @nonobjc func unknow_069() {}//SourceEditor`SourceEditor.SourceEditorView.allowLineAnnotationAnimations.materializeForSet : Swift.Bool
+    @nonobjc func unknow_070() {}
+    @nonobjc func unknow_071() {}//SourceEditor`SourceEditor.SourceEditorView.gutter.getter : Swift.Optional<SourceEditor.SourceEditorGutter>
+    @nonobjc func unknow_072() {}//SourceEditor`SourceEditor.SourceEditorView.gutter.setter : Swift.Optional<SourceEditor.SourceEditorGutter>
+    @nonobjc func unknow_073() {}//SourceEditor`SourceEditor.SourceEditorView.gutter.materializeForSet : Swift.Optional<SourceEditor.SourceEditorGutter>
+    @nonobjc func unknow_074() {}//SourceEditor`SourceEditor.SourceEditorView.gutterAnnotations.getter : Swift.Set<SourceEditor.SourceEditorGutterAnnotation>
+    @nonobjc func unknow_075() {}//SourceEditor`SourceEditor.SourceEditorView.gutterAnnotations.setter : Swift.Set<SourceEditor.SourceEditorGutterAnnotation>
+    @nonobjc func unknow_076() {}//SourceEditor`SourceEditor.SourceEditorView.gutterAnnotations.materializeForSet : Swift.Set<SourceEditor.SourceEditorGutterAnnotation>
+    @nonobjc func unknow_077() {}
+    @nonobjc func unknow_078() {}
+    @nonobjc func unknow_079() {}
+    @nonobjc func unknow_080() {}//SourceEditor`SourceEditor.SourceEditorView.registerDraggingExtension(SourceEditor.SourceEditorViewDraggingExtension, identifier: Swift.String) -> ()
+    @nonobjc func unknow_081() {}//SourceEditor`SourceEditor.SourceEditorView.unregisterDraggingExtensionWith(identifier: Swift.String) -> ()
+    @nonobjc func unknow_082() {}
+    @nonobjc func unknow_083() {}//SourceEditor`SourceEditor.SourceEditorView.textFindableDisplay.getter : SourceEditor.TextFindableDisplay
+    @nonobjc func unknow_084() {}//SourceEditor`SourceEditor.SourceEditorView.textFindableDisplay.setter : SourceEditor.TextFindableDisplay
+    @nonobjc func unknow_085() {}//SourceEditor`SourceEditor.SourceEditorView.textFindableDisplay.materializeForSet : SourceEditor.TextFindableDisplay
+    @nonobjc func unknow_086() {}//SourceEditor`SourceEditor.SourceEditorView.textFindPanel.getter : SourceEditor.TextFindPanel
+    @nonobjc func unknow_087() {}//SourceEditor`SourceEditor.SourceEditorView.textFindPanel.setter : SourceEditor.TextFindPanel
+    @nonobjc func unknow_088() {}//SourceEditor`SourceEditor.SourceEditorView.textFindPanel.materializeForSet : SourceEditor.TextFindPanel
+    @nonobjc func unknow_089() {}//SourceEditor`SourceEditor.SourceEditorView.textFindPanelHost.getter : SourceEditor.TextFindPanelHost
+    @nonobjc func unknow_090() {}//SourceEditor`SourceEditor.SourceEditorView.textFindPanelDisplayed.getter : Swift.Bool
+    @nonobjc func unknow_091() {}
+    @nonobjc func unknow_092() {}
+    @nonobjc func unknow_093() {}//SourceEditor`SourceEditor.SourceEditorView.findQuery.getter : SourceEditor.TextFindQuery
+    @nonobjc func unknow_094() {}//SourceEditor`SourceEditor.SourceEditorView.findQuery.setter : SourceEditor.TextFindQuery
+    @nonobjc func unknow_095() {}//SourceEditor`SourceEditor.SourceEditorView.findQuery.materializeForSet : SourceEditor.TextFindQuery
+    @nonobjc func unknow_096() {}//SourceEditor`SourceEditor.SourceEditorView.findResult.getter : Swift.Optional<SourceEditor.TextFindResult>
+    @nonobjc func unknow_097() {}//SourceEditor`SourceEditor.SourceEditorView.findResult.setter : Swift.Optional<SourceEditor.TextFindResult>
+    @nonobjc func unknow_098() {}//SourceEditor`SourceEditor.SourceEditorView.findResult.materializeForSet : Swift.Optional<SourceEditor.TextFindResult>
+    @nonobjc func unknow_099() {}//SourceEditor`SourceEditor.SourceEditorView.findReplaceWith.getter : Swift.Optional<SourceEditor.TextFindValue>
+    @nonobjc func unknow_0a0() {}//SourceEditor`SourceEditor.SourceEditorView.findReplaceWith.setter : Swift.Optional<SourceEditor.TextFindValue>
+    @nonobjc func unknow_0a1() {}//SourceEditor`SourceEditor.SourceEditorView.findReplaceWith.materializeForSet : Swift.Optional<SourceEditor.TextFindValue>
+    @nonobjc func unknow_0a2() {}//SourceEditor`SourceEditor.SourceEditorView.findResultNeedUpdate.getter : Swift.Bool
+    @nonobjc func unknow_0a3() {}//SourceEditor`SourceEditor.SourceEditorView.findResultNeedUpdate.setter : Swift.Bool
+    @nonobjc func unknow_0a4() {}//SourceEditor`SourceEditor.SourceEditorView.findResultNeedUpdate.materializeForSet : Swift.Bool
+    @nonobjc func unknow_0a5() {}
+    @nonobjc func unknow_0a6() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.pullFindConfigurationForFindQuery() -> ()
+    @nonobjc func unknow_0a7() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.pushFindConfigurationForFindQuery() -> ()
+    @nonobjc func unknow_0a8() {}//SourceEditor`SourceEditor.SourceEditorView.findPanelTopAnchor.getter : __ObjC.NSLayoutYAxisAnchor
+    @nonobjc func unknow_0a9() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.present(SourceEditor.TextFindPanel) -> ()
+    @nonobjc func unknow_0b0() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.dismiss(SourceEditor.TextFindPanel) -> ()
+    @nonobjc func unknow_0b1() {}//SourceEditor`SourceEditor.SourceEditorView.selectedSymbolHighlightDelay.getter : Swift.Optional<Swift.Double>
+    @nonobjc func unknow_0b2() {}//SourceEditor`SourceEditor.SourceEditorView.selectedSymbolHighlightDelay.setter : Swift.Optional<Swift.Double>
+    @nonobjc func unknow_0b3() {}//SourceEditor`SourceEditor.SourceEditorView.selectedSymbolHighlightDelay.materializeForSet : Swift.Optional<Swift.Double>
+    @nonobjc func unknow_0b4() {}
+    @nonobjc func unknow_0b5() {}
+    @nonobjc func unknow_0b6() {}
+    @nonobjc func unknow_0b7() {}
+    @nonobjc func unknow_0b8() {}
+    @nonobjc func unknow_0b9() {}
+    @nonobjc func unknow_0c0() {}//SourceEditor`SourceEditor.SourceEditorView.delimiterHighlightEnabled.getter : Swift.Bool
+    @nonobjc func unknow_0c1() {}//SourceEditor`SourceEditor.SourceEditorView.delimiterHighlightEnabled.setter : Swift.Bool
+    @nonobjc func unknow_0c2() {}//SourceEditor`SourceEditor.SourceEditorView.delimiterHighlightEnabled.materializeForSet : Swift.Bool
+    @nonobjc func unknow_0c3() {}//SourceEditor`SourceEditor.SourceEditorView.coverageLayoutVisualization.getter : Swift.Optional<SourceEditor.CodeCoverageVisualization>
+    @nonobjc func unknow_0c4() {}//SourceEditor`SourceEditor.SourceEditorView.coverageLayoutVisualization.setter : Swift.Optional<SourceEditor.CodeCoverageVisualization
+    @nonobjc func unknow_0c5() {}//SourceEditor`SourceEditor.SourceEditorView.coverageLayoutVisualization.materializeForSet : Swift.Optional<SourceEditor.CodeCoverageVisualization>
+    @nonobjc func unknow_0c6() {}//SourceEditor`SourceEditor.SourceEditorView.isEditingEnabled.getter : Swift.Bool
+    @nonobjc func unknow_0c7() {}//SourceEditor`SourceEditor.SourceEditorView.isEditingEnabled.setter : Swift.Bool
+    @nonobjc func unknow_0c8() {}//SourceEditor`SourceEditor.SourceEditorView.isEditingEnabled.materializeForSet : Swift.Bool
+    @nonobjc func unknow_0c9() {}
+    @nonobjc func unknow_0d0() {}
+    @nonobjc func unknow_0d1() {}
+    @nonobjc func unknow_0d2() {}//SourceEditor`SourceEditor.SourceEditorView.clearSelectionAnchors() -> ())
+    @nonobjc func selection() -> SourceEditorSelection? { fatalError() }//SourceEditor`SourceEditor.SourceEditorView.selection.getter : Swift.Optional<SourceEditor.SourceEditorSelection>
+    @nonobjc func unknow_0d4() {}
+    @nonobjc func unknow_0d5() {}
+    @nonobjc func setSelectedRange(_ range: SourceEditorRange, modifiers: Int) {}//SourceEditor`SourceEditor.SourceEditorView.setSelectedRange(SourceEditor.SourceEditorRange, modifiers: SourceEditor.SourceEditorSelectionModifiers) -> ()
+    @nonobjc func setSelectedRanges(_ ranges: [SourceEditorRange], modifiers: Int) {}//SourceEditor`SourceEditor.SourceEditorView.setSelectedRanges(Swift.Array<SourceEditor.SourceEditorRange>, modifiers: SourceEditor.SourceEditorSelectionModifiers) -> ()
+    @nonobjc func unknow_0d8() {}//SourceEditor`SourceEditor.SourceEditorView.addSelectedRange(SourceEditor.SourceEditorRange, modifiers: SourceEditor.SourceEditorSelectionModifiers) -> ()
+    @nonobjc func unknow_0d9() {}//SourceEditor`SourceEditor.SourceEditorView.addSelectedRanges(Swift.Array<SourceEditor.SourceEditorRange>, modifiers: SourceEditor.SourceEditorSelectionModifiers) -> ()
+    @nonobjc func unknow_0e0() {}
+    @nonobjc func unknow_0e1() {}
+    @nonobjc func unknow_0e2() {}//SourceEditor`SourceEditor.SourceEditorView.selectedSourceRange.getter : Swift.Optional<SourceEditor.SourceEditorRange>
+    @nonobjc func unknow_0e3() {}//SourceEditor`SourceEditor.SourceEditorView.drawableSelectedSourceRanges.getter : Swift.Array<SourceEditor.SourceEditorRange>
+    @nonobjc func selectionWillChange() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.selectionWillChange() -> ()
+    @nonobjc func unknow_0e5() {}
+    @nonobjc func unknow_0e6() {}
+    @nonobjc func unknow_0e7() {}
+    @nonobjc func unknow_0e8() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.selectionDidChange(from: Swift.Optional<SourceEditor.SourceEditorSelection>) -> ()
+    @nonobjc func unknow_0e9() {}//SourceEditor`SourceEditor.SourceEditorView.(calloutVisualization in _21FB12A7D498BCC8AE8B7D65E086EAF9).getter : SourceEditor.RangePopLayoutVisualization
+    @nonobjc func unknow_0f0() {}
+    @nonobjc func unknow_0f1() {}
+    @nonobjc func unknow_0f2() {}//SourceEditor`SourceEditor.SourceEditorView.showCallout(for: SourceEditor.SourceEditorRange) -> ()
+    @nonobjc func unknow_0f3() {}//SourceEditor`SourceEditor.SourceEditorView.escapeKeyTriggersCodeCompletion.getter : Swift.Bool
+    @nonobjc func unknow_0f4() {}//SourceEditor`SourceEditor.SourceEditorView.isShowingCodeCompletion.getter : Swift.Bool
+    @nonobjc func unknow_0f5() {}//SourceEditor`SourceEditor.SourceEditorView.isCodeCompletionEnabled.getter : Swift.Bool
+    @nonobjc func unknow_0f6() {}//SourceEditor`SourceEditor.SourceEditorView.isCodeCompletionEnabled.setter : Swift.Bool
+    @nonobjc func unknow_0f7() {}//SourceEditor`SourceEditor.SourceEditorView.isCodeCompletionEnabled.materializeForSet : Swift.Bool
+    @nonobjc func unknow_0f8() {}
+    @nonobjc func unknow_0f9() {}
+    @nonobjc func unknow_100() {}
+    @nonobjc func unknow_101() {}//SourceEditor`SourceEditor.SourceEditorView.codeCompletionController.getter : Swift.Optional<SourceEditor.SourceEditorCodeCompletionController>
+    @nonobjc func unknow_102() {}
+    @nonobjc func unknow_103() {}
+    @nonobjc func unknow_104() {}//SourceEditor`SourceEditor.SourceEditorView.currentListShownExplicitly.getter : Swift.Bool
+    @nonobjc func unknow_105() {}//SourceEditor`SourceEditor.SourceEditorView.currentListShownExplicitly.setter : Swift.Bool
+    @nonobjc func unknow_106() {}//SourceEditor`SourceEditor.SourceEditorView.currentListShownExplicitly.materializeForSet : Swift.Bool
+    @nonobjc func unknow_107() {}//SourceEditor`SourceEditor.SourceEditorView.currentListWordStart.getter : Swift.Optional<SourceEditor.SourceEditorPosition>
+    @nonobjc func unknow_108() {}//SourceEditor`SourceEditor.SourceEditorView.currentListWordStart.setter : Swift.Optional<SourceEditor.SourceEditorPosition>
+    @nonobjc func unknow_109() {}//SourceEditor`SourceEditor.SourceEditorView.currentListWordStart.materializeForSet : Swift.Optional<SourceEditor.SourceEditorPosition>
+    @nonobjc func unknow_110() {}//SourceEditor`SourceEditor.SourceEditorView.tokenRangeAtCursorPosition(SourceEditor.SourceEditorPosition) -> Swift.Optional<(Swift.Optional<SourceEditor.SourceEditorTokenType>, SourceEditor.SourceEditorRange)>
+    @nonobjc func unknow_111() {}//SourceEditor`SourceEditor.SourceEditorView.rangeOfCodeCompletionTokenToReplace(at: SourceEditor.SourceEditorPosition) -> Swift.Optional<SourceEditor.SourceEditorRange>
+    @nonobjc func unknow_112() {}//SourceEditor`SourceEditor.SourceEditorView.codeCompletionWordStart(for: SourceEditor.SourceEditorPosition) -> SourceEditor.SourceEditorPosition
+    @nonobjc func unknow_113() {}//SourceEditor`SourceEditor.SourceEditorView.shouldProvideCodeCompletionInCurrentRange.getter : Swift.Bool
+    @nonobjc func unknow_114() {}
+    @nonobjc func unknow_115() {}
+    @nonobjc func unknow_116() {}
+    @nonobjc func unknow_117() {}
+    @nonobjc func unknow_118() {}
+    @nonobjc func unknow_119() {}//SourceEditor`SourceEditor.SourceEditorView.overrideCompletionDisplay(shouldDisplay: Swift.Bool) -> ()
+    @nonobjc func unknow_120() {}//SourceEditor`SourceEditor.SourceEditorView.codeCompletionAvailabilityChanged(duringReload: Swift.Bool) -> ()
+    @nonobjc func unknow_121() {}//SourceEditor`SourceEditor.SourceEditorView.queueCodeCompletion(explicitly: Swift.Bool) -> ()
+    @nonobjc func unknow_122() {}//SourceEditor`SourceEditor.SourceEditorView.shouldAutocompleteHumanTextInRange(SourceEditor.SourceEditorRange) -> Swift.Bool
+    @nonobjc func unknow_123() {}//SourceEditor`SourceEditor.SourceEditorView.completionRangeForCodeCompletionController(SourceEditor.SourceEditorCodeCompletionController) -> Swift.Optional<SourceEditor.SourceEditorRange>
+    @nonobjc func unknow_124() {}//SourceEditor`SourceEditor.SourceEditorView.completionDataSourceForCodeCompletionController(SourceEditor.SourceEditorCodeCompletionController) -> SourceEditor.SourceEditorDataSource
+    @nonobjc func unknow_125() {}//SourceEditor`SourceEditor.SourceEditorView.performCompletionForSuggestion(SourceEditor.SourceEditorCodeCompletionSuggestion, knownSnippets: Swift.Dictionary<Swift.String, Swift.String>, isReturn: Swift.Bool) -> (Swift.Bool, Swift.Bool)
+    @nonobjc func unknow_126() {}//SourceEditor`SourceEditor.SourceEditorView.replaceTextAtCodeCompletionInsertionPoint(with: Swift.String, eraseBytes: Swift.Int) -> (Swift.Bool, Swift.Bool)
+    @nonobjc func unknow_127() {}//SourceEditor`SourceEditor.SourceEditorView.showCodeCompletionSuggestionList() -> ()
+    @nonobjc func unknow_128() {}//SourceEditor`SourceEditor.SourceEditorView.hideCodeCompletionSuggestionList(withReason: SourceEditor.CodeCompletionDismissalReason) -> Swift.Bool
+    @nonobjc func unknow_129() {}//SourceEditor`SourceEditor.SourceEditorView.shouldAutomaticallyShowCompletionSuggestions(at: SourceEditor.SourceEditorPosition) -> Swift.Bool
+    @nonobjc func unknow_130() {}//SourceEditor`SourceEditor.SourceEditorView.shouldSuppressCodeCompletion() -> Swift.Bool
+    @nonobjc func unknow_131() {}
+    @nonobjc func unknow_132() {}
+    @nonobjc func unknow_133() {}
+    @nonobjc func unknow_134() {}
+    @nonobjc func unknow_135() {}
+    @nonobjc func unknow_136() {}
+    @nonobjc func unknow_137() {}
+    @nonobjc func unknow_138() {}
+    @nonobjc func unknow_139() {}
+    @nonobjc func unknow_140() {}
+    @nonobjc func unknow_141() {}
+    @nonobjc func unknow_142() {}
+    @nonobjc func unknow_143() {}
+    @nonobjc func unknow_144() {}
+    @nonobjc func unknow_145() {}
+    @nonobjc func selectTextPosition(_ position: SourceEditorPosition, scrollPlacement: Int?, alwaysScroll: Bool) {}//SourceEditor`SourceEditor.SourceEditorView.selectTextPosition(SourceEditor.SourceEditorPosition, scrollPlacement: Swift.Optional<SourceEditor.ScrollPlacement>, alwaysScroll: Swift.Bool) -> ()
+    @nonobjc func selectTextRange(_ range: SourceEditorRange?, scrollIfNeeded: Bool) {}//SourceEditor`SourceEditor.SourceEditorView.selectTextRange(Swift.Optional<SourceEditor.SourceEditorRange>, scrollIfNeeded: Swift.Bool) -> ()
+    @nonobjc func selectTextRange(_ range: SourceEditorRange?, scrollPlacement: Int?, alwaysScroll: Bool) {}//SourceEditor`SourceEditor.SourceEditorView.selectTextRange(Swift.Optional<SourceEditor.SourceEditorRange>, scrollPlacement: Swift.Optional<SourceEditor.ScrollPlacement>, alwaysScroll: Swift.Bool) -> ()
+    @nonobjc func unknow_149() {}
+    @nonobjc func unknow_150() {}//SourceEditor`SourceEditor.SourceEditorView.scrollToSelection(scrollPlacement: SourceEditor.ScrollPlacement, alwaysScroll: Swift.Bool) -> ()
+    @nonobjc func unknow_151() {}//SourceEditor`SourceEditor.SourceEditorView.scrollTo(position: SourceEditor.SourceEditorPosition, placement: SourceEditor.ScrollPlacement, offset: CoreGraphics.CGFloat) -> ()
+    @nonobjc func unknow_152() {}
+    @nonobjc func unknow_153() {}//SourceEditor`SourceEditor.SourceEditorView.(suggestedHorizontalScrollPoint in _21FB12A7D498BCC8AE8B7D65E086EAF9)(for: SourceEditor.SourceEditorRange, anchorToStart: Swift.Bool, placement: SourceEditor.ScrollPlacement) -> Swift.Optional<CoreGraphics.CGFloat>
+    @nonobjc func unknow_154() {}
+    @nonobjc func unknow_155() {}
+    @nonobjc func unknow_156() {}//SourceEditor`SourceEditor.SourceEditorView.isPositionInVisibleRect(SourceEditor.SourceEditorPosition) -> Swift.Bool
+    @nonobjc func unknow_157() {}//SourceEditor`SourceEditor.SourceEditorView.currentScrollState() -> (Swift.Int, CoreGraphics.CGFloat)
+    @nonobjc func unknow_158() {}//SourceEditor`SourceEditor.SourceEditorView.applyScrollState(line: Swift.Int, offset: CoreGraphics.CGFloat) -> ()
+    @nonobjc func unknow_159() {}//SourceEditor`SourceEditor.SourceEditorView.contextualMenuItemProvider.getter : weak Swift.Optional<SourceEditor.SourceEditorViewContextualMenuItemProvider>
+    @nonobjc func unknow_160() {}//SourceEditor`SourceEditor.SourceEditorView.contextualMenuItemProvider.setter : weak Swift.Optional<SourceEditor.SourceEditorViewContextualMenuItemProvider>
+    @nonobjc func unknow_161() {}//SourceEditor`SourceEditor.SourceEditorView.contextualMenuItemProvider.materializeForSet : weak Swift.Optional<SourceEditor.SourceEditorViewContextualMenuItemProvider>
+    @nonobjc func unknow_162() {}//SourceEditor`SourceEditor.SourceEditorView.structuredSelectionDelegate.getter : weak Swift.Optional<SourceEditor.SourceEditorViewStructuredSelectionDelegate>
+    @nonobjc func unknow_163() {}//SourceEditor`SourceEditor.SourceEditorView.structuredSelectionDelegate.setter : weak Swift.Optional<SourceEditor.SourceEditorViewStructuredSelectionDelegate>
+    @nonobjc func unknow_164() {}//SourceEditor`SourceEditor.SourceEditorView.structuredSelectionDelegate.materializeForSet : weak Swift.Optional<SourceEditor.SourceEditorViewStructuredSelectionDelegate>
+    @nonobjc func unknow_165() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.quickEditRangeForPosition(SourceEditor.SourceEditorPosition) -> Swift.Optional<SourceEditor.SourceEditorRange>
+    @nonobjc func unknow_166() {}//SourceEditor`SourceEditor.SourceEditorView.eventConsumers.getter : Swift.Array<SourceEditor.SourceEditorViewEventConsumer>
+    @nonobjc func unknow_167() {}
+    @nonobjc func unknow_168() {}
+    @nonobjc func unknow_169() {}//SourceEditor`SourceEditor.SourceEditorView.addEventConsumer(SourceEditor.SourceEditorViewEventConsumer) -> ()
+    @nonobjc func unknow_170() {}//SourceEditor`SourceEditor.SourceEditorView.removeEventConsumer(SourceEditor.SourceEditorViewEventConsumer) -> ()
+    @nonobjc func unknow_171() {}
+    @nonobjc func unknow_172() {}
+    @nonobjc func unknow_173() {}
+    @nonobjc func unknow_174() {}
+    @nonobjc func unknow_175() {}//SourceEditor`SourceEditor.SourceEditorView.closestPositionAtPoint(__C.CGPoint) -> Swift.Optional<SourceEditor.SourceEditorPosition>
+    @nonobjc func unknow_176() {}//SourceEditor`SourceEditor.SourceEditorView.positionAtPoint(__C.CGPoint) -> Swift.Optional<SourceEditor.SourceEditorPosition>
+    @nonobjc func unknow_177() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.dataSourceContentsChanged(Swift.Optional<SourceEditor.SourceEditorRange>) -> ()
+    @nonobjc func unknow_178() {}//SourceEditor`SourceEditor.SourceEditorView.dataSourceDidInsertTextInRange(SourceEditor.SourceEditorRange) -> ()
+    @nonobjc func unknow_179() {}//SourceEditor`SourceEditor.SourceEditorView.dataSourceDidDeleteTextInRange(SourceEditor.SourceEditorRange) -> ()
+    @nonobjc func unknow_180() {}//SourceEditor`SourceEditor.SourceEditorView.dataSourceDidInsertLines(Foundation.IndexSet) -> ()
+    @nonobjc func unknow_181() {}//SourceEditor`SourceEditor.SourceEditorView.dataSourceDidDeleteLines(Foundation.IndexSet) -> ()
+    @nonobjc func unknow_182() {}//SourceEditor`SourceEditor.SourceEditorView.dataSourceBeginEditTransaction() -> ()
+    @nonobjc func unknow_183() {}//SourceEditor`SourceEditor.SourceEditorView.dataSourceEndEditTransaction() -> ()
+    @nonobjc func unknow_184() {}
+    @nonobjc func unknow_185() {}//SourceEditor`SourceEditor.SourceEditorView.editing.getter : Swift.Bool
+    @nonobjc func unknow_186() {}//SourceEditor`SourceEditor.SourceEditorView.editing.setter : Swift.Bool
+    @nonobjc func unknow_187() {}//SourceEditor`SourceEditor.SourceEditorView.editing.materializeForSet : Swift.Bool
+    @nonobjc func unknow_188() {}
+    @nonobjc func unknow_189() {}
+    @nonobjc func unknow_190() {}
+    @nonobjc func unknow_191() {}
+    @nonobjc func unknow_192() {}
+    @nonobjc func unknow_193() {}
+    @nonobjc func unknow_194() {}
+    @nonobjc func unknow_195() {}//SourceEditor`SourceEditor.SourceEditorView.contentSize.getter : CoreGraphics.CGFloat
+    @nonobjc func unknow_196() {}
+    @nonobjc func unknow_197() {}
+    @nonobjc func unknow_198() {}//SourceEditor`SourceEditor.SourceEditorView.(updateContentSize in _21FB12A7D498BCC8AE8B7D65E086EAF9)() -> ()
+    @nonobjc func unknow_199() {}//SourceEditor`SourceEditor.SourceEditorView.updateContentSizeIfNeeded() -> ()
+    @nonobjc func unknow_1a0() {}//SourceEditor`SourceEditor.SourceEditorView.(updateContentOffsetIfNeeded in _21FB12A7D498BCC8AE8B7D65E086EAF9)() -> ()
+    @nonobjc func unknow_1a1() {}
+    @nonobjc func unknow_1a2() {}
+    @nonobjc func unknow_1a3() {}
+    @nonobjc func unknow_1a4() {}
+    @nonobjc func unknow_1a5() {}
+    @nonobjc func unknow_1a6() {}
+    @nonobjc func unknow_1a7() {}
+    @nonobjc func unknow_1a8() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.contentViewDidFinishLayout() -> ()
+    @nonobjc func unknow_1a9() {}
+    @nonobjc func unknow_1b0() {}
+    @nonobjc func unknow_1b1() {}
+    @nonobjc func unknow_1b2() {}
+    @nonobjc func unknow_1b3() {}
+    @nonobjc func unknow_1b4() {}
+    @nonobjc func unknow_1b5() {}
+    @nonobjc func unknow_1b6() {}
+    @nonobjc func unknow_1b7() {}
+    @nonobjc func unknow_1b8() {}
+    @nonobjc func unknow_1b9() {}
+    @nonobjc func unknow_1c0() {}
+    @nonobjc func unknow_1c1() {}
+    @nonobjc func unknow_1c2() {}
+    @nonobjc func unknow_1c3() {}
+    @nonobjc func unknow_1c4() {}
+    @nonobjc func unknow_1c5() {}
+    @nonobjc func unknow_1c6() {}
+    @nonobjc func unknow_1c7() {}
+    @nonobjc func unknow_1c8() {}
+    @nonobjc func unknow_1c9() {}
+    @nonobjc func unknow_1d0() {}
+    @nonobjc func unknow_1d1() {}
+    @nonobjc func unknow_1d2() {}
+    @nonobjc func unknow_1d3() {}
+    @nonobjc func unknow_1d4() {}
+    @nonobjc func unknow_1d5() {}
+    @nonobjc func unknow_1d6() {}
+    @nonobjc func unknow_1d7() {}
+    @nonobjc func unknow_1d8() {}
+    @nonobjc func unknow_1d9() {}
+    @nonobjc func unknow_1e0() {}
+    @nonobjc func unknow_1e1() {}
+    @nonobjc func unknow_1e2() {}
+    @nonobjc func unknow_1e3() {}
+    @nonobjc func unknow_1e4() {}
+    @nonobjc func unknow_1e5() {}
+    @nonobjc func unknow_1e6() {}
+    @nonobjc func unknow_1e7() {}
+    @nonobjc func unknow_1e8() {}
+    @nonobjc func unknow_1e9() {}
+    @nonobjc func unknow_1f0() {}
+    @nonobjc func unknow_1f1() {}
+    @nonobjc func unknow_1f2() {}
+    @nonobjc func unknow_1f3() {}
+    @nonobjc func unknow_1f4() {}
+    @nonobjc func unknow_1f5() {}
+    @nonobjc func unknow_1f6() {}
+    @nonobjc func unknow_1f7() {}
+    @nonobjc func unknow_1f8() {}
+    @nonobjc func unknow_1f9() {}
     
-
-//    @objc dynamic func xvim_concludeDragOperation(_ sender: NSDraggingInfo?) {
-//        xvim_concludeDragOperation(sender)
-//        logger.debug?.write()
-//    }
-//    @objc dynamic func xvim_performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-//        let x = xvim_performDragOperation(sender)
-//        logger.debug?.write()
-//        return x
-//    }
-//    @objc dynamic func xvim_prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
-//        let x = xvim_prepareForDragOperation(sender)
-//        logger.debug?.write()
-//        return x
-//    }
+    //    @objc dynamic func xvim_concludeDragOperation(_ sender: NSDraggingInfo?) {
+    //        xvim_concludeDragOperation(sender)
+    //        logger.debug?.write()
+    //    }
+    //    @objc dynamic func xvim_performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+    //        let x = xvim_performDragOperation(sender)
+    //        logger.debug?.write()
+    //        return x
+    //    }
+    //    @objc dynamic func xvim_prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
+    //        let x = xvim_prepareForDragOperation(sender)
+    //        logger.debug?.write()
+    //        return x
+    //    }
     
-    //    //        - (void)mouseExited:(id)arg1;
-    //    //        - (void)mouseEntered:(id)arg1;
-    //    //        - (void)mouseMoved:(id)arg1;
-    //    //        - (void)rightMouseUp:(id)arg1;
-    //    //        - (void)mouseUp:(id)arg1;
-    //    //        - (void)mouseDragged:(id)arg1;
-    //    //        - (void)rightMouseDown:(id)arg1;
-    //    //        - (void)mouseDown:(id)arg1;
-
-//
-//
-//
-//    @objc override dynamic func rightMouseUp(with event: NSEvent) {
-////        xvim_rightMouseUp(event)
-//        logger.debug?.write(event)
-//    }
-//
-//    @objc override dynamic func rightMouseDown(_ event: NSEvent) {
-////        xvim_rightMouseDown(event)
-//        logger.debug?.write(event)
-//    }
-
-    //    //        - (void)draggingExited:(id)arg1;//    //        - (unsigned long long)draggingUpdated:(id)arg1;//    //        - (unsigned long long)draggingEntered:(id)arg1;
-
-//                - (void)concludeDragOperation:(id)arg1;
-//                - (BOOL)performDragOperation:(id)arg1;
-//                - (BOOL)prepareForDragOperation:(id)arg1;
-
-//    @objc dynamic func xvim_mouseDragged(_ event: NSEvent) {
-////        logger.debug?.write(event)
-//
-//
-//        //NSEvent: type=LMouseDragged loc=(55.0625,524.395) time=1035298.3 flags=0x80020 win=0x10a23f590 winNum=21652 ctxt=0x0 evNum=-6145 click=1 buttonNumber=0 pressure=1 deltaX=0.000000 deltaY=0.000000 deviceID:0x300000014400000 subtype=NSEventSubtypeTouch
-//        //NSEvent: type=LMouseDragged loc=(782.656,38.0156) time=1035301.2 flags=0x80020 win=0x10a23f590 winNum=21652 ctxt=0x0 evNum=-6145 click=1 buttonNumber=0 pressure=1 deltaX=0.000000 deltaY=0.000000 deviceID:0x300000014400000 subtype=NSEventSubtypeTouch
-//
-//        let nv = NSEvent.mouseEvent(with: .leftMouseDragged, location: event.locationInWindow, modifierFlags: [], timestamp: 98, windowNumber: 0, context: nil, eventNumber: 0, clickCount: 2, pressure: 1)
-//        xvim_mouseDragged(nv!)
-//    }
-//    @objc dynamic func xvim_mouseUp(_ event: NSEvent) {
-////        logger.debug?.write(event)
-//
-//        //NSEvent: type=LMouseUp loc=(782.656,38.0156) time=1035301.5 flags=0x80020 win=0x10a23f590 winNum=21652 ctxt=0x0 evNum=-6145 click=0 buttonNumber=0 pressure=0 deviceID:0x300000014400000 subtype=NSEventSubtypeTouch
-//
-//        let nv = NSEvent.mouseEvent(with: .leftMouseUp, location: event.locationInWindow, modifierFlags: [], timestamp: 98, windowNumber: 0, context: nil, eventNumber: 0, clickCount: 0, pressure: 0)
-//        xvim_mouseUp(nv!)
-//    }
-//    @objc dynamic func xvim_mouseDown(_ event: NSEvent) {
-////        logger.debug?.write(event)
-//
-//        //open class func mouseEvent(with type: NSEvent.EventType, location: NSPoint, modifierFlags flags: NSEvent.ModifierFlags, timestamp time: TimeInterval, windowNumber wNum: Int, context unusedPassNil: NSGraphicsContext?, eventNumber eNum: Int, clickCount cNum: Int, pressure: Float) -> NSEvent?
-//
-//
-//        //NSEvent: type=LMouseDown loc=(55.0625,525.098) time=1035298.2 flags=0x80020 win=0x10a23f590 winNum=21652 ctxt=0x0 evNum=-6145 click=1 buttonNumber=0 pressure=1 deviceID:0x300000014400000 subtype=NSEventSubtypeTouch
-//
-//        let nv = NSEvent.mouseEvent(with: .leftMouseDown, location: event.locationInWindow, modifierFlags: [], timestamp: 99, windowNumber: 0, context: nil, eventNumber: 0, clickCount: 2, pressure: 1)
-//        xvim_mouseDown(nv!)
-//    }
+    //
+    //
+    //
+    //    @objc override dynamic func rightMouseUp(with event: NSEvent) {
+    ////        xvim_rightMouseUp(event)
+    //        logger.debug?.write(event)
+    //    }
+    //
+    //    @objc override dynamic func rightMouseDown(_ event: NSEvent) {
+    ////        xvim_rightMouseDown(event)
+    //        logger.debug?.write(event)
+    //    }
+    
+    //    @objc dynamic func xvim_mouseDragged(_ event: NSEvent) {
+    ////        logger.debug?.write(event)
+    //
+    //
+    //        //NSEvent: type=LMouseDragged loc=(55.0625,524.395) time=1035298.3 flags=0x80020 win=0x10a23f590 winNum=21652 ctxt=0x0 evNum=-6145 click=1 buttonNumber=0 pressure=1 deltaX=0.000000 deltaY=0.000000 deviceID:0x300000014400000 subtype=NSEventSubtypeTouch
+    //        //NSEvent: type=LMouseDragged loc=(782.656,38.0156) time=1035301.2 flags=0x80020 win=0x10a23f590 winNum=21652 ctxt=0x0 evNum=-6145 click=1 buttonNumber=0 pressure=1 deltaX=0.000000 deltaY=0.000000 deviceID:0x300000014400000 subtype=NSEventSubtypeTouch
+    //
+    //        let nv = NSEvent.mouseEvent(with: .leftMouseDragged, location: event.locationInWindow, modifierFlags: [], timestamp: 98, windowNumber: 0, context: nil, eventNumber: 0, clickCount: 2, pressure: 1)
+    //        xvim_mouseDragged(nv!)
+    //    }
+    //    @objc dynamic func xvim_mouseUp(_ event: NSEvent) {
+    ////        logger.debug?.write(event)
+    //
+    //        //NSEvent: type=LMouseUp loc=(782.656,38.0156) time=1035301.5 flags=0x80020 win=0x10a23f590 winNum=21652 ctxt=0x0 evNum=-6145 click=0 buttonNumber=0 pressure=0 deviceID:0x300000014400000 subtype=NSEventSubtypeTouch
+    //
+    //        let nv = NSEvent.mouseEvent(with: .leftMouseUp, location: event.locationInWindow, modifierFlags: [], timestamp: 98, windowNumber: 0, context: nil, eventNumber: 0, clickCount: 0, pressure: 0)
+    //        xvim_mouseUp(nv!)
+    //    }
+    //    @objc dynamic func xvim_mouseDown(_ event: NSEvent) {
+    ////        logger.debug?.write(event)
+    //
+    //        //open class func mouseEvent(with type: NSEvent.EventType, location: NSPoint, modifierFlags flags: NSEvent.ModifierFlags, timestamp time: TimeInterval, windowNumber wNum: Int, context unusedPassNil: NSGraphicsContext?, eventNumber eNum: Int, clickCount cNum: Int, pressure: Float) -> NSEvent?
+    //
+    //
+    //        //NSEvent: type=LMouseDown loc=(55.0625,525.098) time=1035298.2 flags=0x80020 win=0x10a23f590 winNum=21652 ctxt=0x0 evNum=-6145 click=1 buttonNumber=0 pressure=1 deviceID:0x300000014400000 subtype=NSEventSubtypeTouch
+    //
+    //        let nv = NSEvent.mouseEvent(with: .leftMouseDown, location: event.locationInWindow, modifierFlags: [], timestamp: 99, windowNumber: 0, context: nil, eventNumber: 0, clickCount: 2, pressure: 1)
+    //        xvim_mouseDown(nv!)
+    //    }
     
     @objc dynamic func xvim_doCommandBySelector(_ sel: Selector) {
         xvim_doCommandBySelector(sel)
-
+        
         logger.debug?.write(sel)
     }
     
-//    @objc dynamic override func perform(_ aSelector: Selector!, with object: Any!) -> Unmanaged<AnyObject>! {
-//
-//        logger.debug?.write(aSelector, object)
-//        return super.perform(aSelector, with: object)
-//    }
+    //    @objc dynamic override func perform(_ aSelector: Selector!, with object: Any!) -> Unmanaged<AnyObject>! {
+    //
+    //        logger.debug?.write(aSelector, object)
+    //        return super.perform(aSelector, with: object)
+    //    }
     
-    @nonobjc func unknow00() {}//SourceEditor`SourceEditor.SourceEditorView.delegate.getter : weak Swift.Optional<SourceEditor.SourceEditorViewDelegate>
-    @nonobjc func unknow01() {}//SourceEditor`SourceEditor.SourceEditorView.delegate.setter : weak Swift.Optional<SourceEditor.SourceEditorViewDelegate>
-    @nonobjc func unknow02() {}//SourceEditor`SourceEditor.SourceEditorView.delegate.materializeForSet : weak Swift.Optional<SourceEditor.SourceEditorViewDelegate>
-    @nonobjc func unknow03() {}//SourceEditor`SourceEditor.SourceEditorView.contentViewOffset.getter : CoreGraphics.CGFloat
-    @nonobjc func unknow04() {}//SourceEditor`SourceEditor.SourceEditorView.contentViewOffset.setter : CoreGraphics.CGFloat
-    @nonobjc func unknow05() {}//SourceEditor`SourceEditor.SourceEditorView.contentViewOffset.materializeForSet : CoreGraphics.CGFloat
-    @nonobjc func unknow06() {}//SourceEditor`SourceEditor.SourceEditorView.structuredEditingController.getter : Swift.Optional<SourceEditor.StructuredEditingController>
-    @nonobjc func unknow07() {}//SourceEditor`SourceEditor.SourceEditorView.structuredEditingController.setter : Swift.Optional<SourceEditor.StructuredEditingController>
-    @nonobjc func unknow08() {}//SourceEditor`SourceEditor.SourceEditorView.structuredEditingController.materializeForSet : Swift.Optional<SourceEditor.StructuredEditingController>
-    @nonobjc func unknow09() {}//SourceEditor`SourceEditor.SourceEditorView.dataSource.getter : SourceEditor.SourceEditorDataSource
-    @nonobjc func unknow10() {}//SourceEditor`SourceEditor.SourceEditorView.dataSource.setter : SourceEditor.SourceEditorDataSource
-    @nonobjc func unknow11() {}//SourceEditor`SourceEditor.SourceEditorView.dataSource.materializeForSet : SourceEditor.SourceEditorDataSource
-    @nonobjc func unknow12() {}
-    @nonobjc func unknow13() {}
-    @nonobjc func unknow14() {}
-    @nonobjc func unknow15() {}
-    @nonobjc func unknow16() {}
-    @nonobjc func unknow17() {}
-    @nonobjc func unknow18() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.init(frame: __C.CGRect, sourceEditorScrollViewClass: __ObjC.SourceEditorScrollView.Type) -> IDEPegasusSourceEditor.SourceCodeEditorView
-    @nonobjc func unknow19() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.init(coder: __ObjC.NSCoder, sourceEditorScrollViewClass: __ObjC.SourceEditorScrollView.Type) -> Swift.Optional<IDEPegasusSourceEditor.SourceCodeEditorView>
-    @nonobjc func unknow20() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.__allocating_init(coder: __ObjC.NSCoder) -> Swift.Optional<IDEPegasusSourceEditor.SourceCodeEditorView>
-    @nonobjc func unknow21() {}//SourceEditor`SourceEditor.SourceEditorView.(commonInit in _21FB12A7D498BCC8AE8B7D65E086EAF9)() -> ()
-    @nonobjc func unknow22() {}//SourceEditor`SourceEditor.SourceEditorView.(updateSelectionManagerIsActive in _21FB12A7D498BCC8AE8B7D65E086EAF9)() -> ()
-    @nonobjc func unknow23() {}//SourceEditor`SourceEditor.SourceEditorView._wantsKeyDownForEvent(__ObjC.NSEvent) -> ObjectiveC.ObjCBool
-    @nonobjc func unknow24() {}//SourceEditor`SourceEditor.SourceEditorView.lineWrappingStyle.getter : Swift.Optional<SourceEditor.LineWrappingStyle>
-    @nonobjc func unknow25() {}//SourceEditor`SourceEditor.SourceEditorView.lineWrappingStyle.setter : Swift.Optional<SourceEditor.LineWrappingStyle>
-    @nonobjc func unknow26() {}//SourceEditor`SourceEditor.SourceEditorView.lineWrappingStyle.materializeForSet : Swift.Optional<SourceEditor.LineWrappingStyle>
-    @nonobjc func unknow27() {}//SourceEditor`SourceEditor.SourceEditorView.editorViewSnapshots(in: Swift.Array<__C.CGRect>) -> Swift.Optional<Swift.Array<__ObjC.NSImage>>
-    @nonobjc func unknow28() {}//SourceEditor`SourceEditor.SourceEditorView.setupStructuredEditingController() -> ()
-    @nonobjc func unknow29() {}//SourceEditor`SourceEditor.SourceEditorView.selectStructureAtPosition(SourceEditor.SourceEditorPosition) -> ()
-    @nonobjc func unknow30() {}
-    @nonobjc func unknow31() {}
-    @nonobjc func unknow32() {}
-    @nonobjc func unknow33() {}//SourceEditor`SourceEditor.SourceEditorView.trimTrailingWhitespaceStyle.getter : Swift.Optional<SourceEditor.TrimTrailingWhitespaceStyle>
-    @nonobjc func unknow34() {}//SourceEditor`SourceEditor.SourceEditorView.trimTrailingWhitespaceStyle.setter : Swift.Optional<SourceEditor.TrimTrailingWhitespaceStyle>
-    @nonobjc func unknow35() {}//SourceEditor`SourceEditor.SourceEditorView.trimTrailingWhitespaceStyle.materializeForSet : Swift.Optional<SourceEditor.TrimTrailingWhitespaceStyle>
-    @nonobjc func unknow36() {}
-    @nonobjc func unknow37() {}//SourceEditor`SourceEditor.SourceEditorView.(configureEditAssistant in _21FB12A7D498BCC8AE8B7D65E086EAF9)() -> ()
-    @nonobjc func unknow38() {}//SourceEditor`SourceEditor.SourceEditorView.colorTheme.getter : SourceEditor.SourceEditorColorTheme
-    @nonobjc func unknow39() {}//SourceEditor`SourceEditor.SourceEditorView.colorTheme.setter : SourceEditor.SourceEditorColorTheme
-    @nonobjc func unknow40() {}//SourceEditor`SourceEditor.SourceEditorView.colorTheme.materializeForSet : SourceEditor.SourceEditorColorTheme
-    @nonobjc func unknow41() {}//SourceEditor`SourceEditor.SourceEditorView.fontTheme.getter : SourceEditor.SourceEditorFontTheme
-    @nonobjc func unknow42() {}//SourceEditor`SourceEditor.SourceEditorView.fontTheme.setter : SourceEditor.SourceEditorFontTheme
-    @nonobjc func unknow43() {}//SourceEditor`SourceEditor.SourceEditorView.fontTheme.materializeForSet : SourceEditor.SourceEditorFontTheme
-    @nonobjc func unknow44() {}//SourceEditor`SourceEditor.SourceEditorView.showInvisiblesTheme.getter : Swift.Optional<SourceEditor.ShowInvisiblesTheme>
-    @nonobjc func unknow45() {}//SourceEditor`SourceEditor.SourceEditorView.showInvisiblesTheme.setter : Swift.Optional<SourceEditor.ShowInvisiblesTheme>
-    @nonobjc func unknow46() {}//SourceEditor`SourceEditor.SourceEditorView.showInvisiblesTheme.materializeForSet : Swift.Optional<SourceEditor.ShowInvisiblesTheme>
-    @nonobjc func unknow47() {}//SourceEditor`SourceEditor.SourceEditorView.fontSmoothingAttributes.getter : SourceEditor.SourceEditorFontSmoothingAttributes
-    @nonobjc func unknow48() {}//SourceEditor`SourceEditor.SourceEditorView.fontSmoothingAttributes.setter : SourceEditor.SourceEditorFontSmoothingAttributes
-    @nonobjc func unknow49() {}//SourceEditor`SourceEditor.SourceEditorView.fontSmoothingAttributes.materializeForSet : SourceEditor.SourceEditorFontSmoothingAttributes
-    @nonobjc func unknow50() {}//SourceEditor`SourceEditor.SourceEditorView.automaticallyAdjustsContentMargins.getter : Swift.Bool
-    @nonobjc func unknow51() {}//SourceEditor`SourceEditor.SourceEditorView.automaticallyAdjustsContentMargins.setter : Swift.Bool
-    @nonobjc func unknow52() {}//SourceEditor`SourceEditor.SourceEditorView.automaticallyAdjustsContentMargins.materializeForSet : Swift.Bool
-    @nonobjc func unknow53() {}//SourceEditor`SourceEditor.SourceEditorView.cursorStyle.getter : SourceEditor.SourceEditorCursorStyle
-    @nonobjc func setCursorStyle(_: Int) {}//SourceEditor`SourceEditor.SourceEditorView.cursorStyle.setter : SourceEditor.SourceEditorCursorStyle
-    @nonobjc func unknow55() {}//SourceEditor`SourceEditor.SourceEditorView.cursorStyle.materializeForSet : SourceEditor.SourceEditorCursorStyle
-    @nonobjc func unknow56() {}//SourceEditor`SourceEditor.SourceEditorView.invalidateCursorRects() -> ()
-    @nonobjc func unknow57() {}//SourceEditor`SourceEditor.SourceEditorView.contentRectForCursor() -> __C.CGRect
-    @nonobjc func unknow58() {}//SourceEditor`SourceEditor.SourceEditorView.(cursorForContentRect in _21FB12A7D498BCC8AE8B7D65E086EAF9)() -> __ObjC.NSCursor
-    @nonobjc func unknow59() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.mouseCursorForStructuredSelection(with: Swift.Optional<__ObjC.NSEvent>) -> Swift.Optional<__ObjC.NSCursor>
-    @nonobjc func unknow60() {}//SourceEditor`SourceEditor.SourceEditorView.lineAnnotations.getter : Swift.Array<SourceEditor.SourceEditorLineAnnotation>
-    @nonobjc func unknow61() {}//SourceEditor`SourceEditor.SourceEditorView.lineAnnotations.setter : Swift.Array<SourceEditor.SourceEditorLineAnnotation>
-    @nonobjc func unknow62() {}//SourceEditor`SourceEditor.SourceEditorView.lineAnnotations.materializeForSet : Swift.Array<SourceEditor.SourceEditorLineAnnotation>
-    @nonobjc func unknow63() {}//SourceEditor`SourceEditor.SourceEditorView.lineAnnotationManager.getter : SourceEditor.SourceEditorLineAnnotationManager
-    @nonobjc func unknow64() {}//SourceEditor`SourceEditor.SourceEditorView.lineAnnotationManager.setter : SourceEditor.SourceEditorLineAnnotationManager
-    @nonobjc func unknow65() {}//SourceEditor`SourceEditor.SourceEditorView.lineAnnotationManager.materializeForSet : SourceEditor.SourceEditorLineAnnotationManager
-    @nonobjc func unknow66() {}//SourceEditor`SourceEditor.SourceEditorView.expandLineAnnotationsOnLine(Swift.Int, animated: Swift.Bool) -> ()
-    @nonobjc func unknow67() {}//SourceEditor`SourceEditor.SourceEditorView.allowLineAnnotationAnimations.getter : Swift.Bool
-    @nonobjc func unknow68() {}//SourceEditor`SourceEditor.SourceEditorView.allowLineAnnotationAnimations.setter : Swift.Bool
-    @nonobjc func unknow69() {}//SourceEditor`SourceEditor.SourceEditorView.allowLineAnnotationAnimations.materializeForSet : Swift.Bool
-    @nonobjc func unknow70() {}
-    @nonobjc func unknow71() {}//SourceEditor`SourceEditor.SourceEditorView.gutter.getter : Swift.Optional<SourceEditor.SourceEditorGutter>
-    @nonobjc func unknow72() {}//SourceEditor`SourceEditor.SourceEditorView.gutter.setter : Swift.Optional<SourceEditor.SourceEditorGutter>
-    @nonobjc func unknow73() {}//SourceEditor`SourceEditor.SourceEditorView.gutter.materializeForSet : Swift.Optional<SourceEditor.SourceEditorGutter>
-    @nonobjc func unknow74() {}//SourceEditor`SourceEditor.SourceEditorView.gutterAnnotations.getter : Swift.Set<SourceEditor.SourceEditorGutterAnnotation>
-    @nonobjc func unknow75() {}//SourceEditor`SourceEditor.SourceEditorView.gutterAnnotations.setter : Swift.Set<SourceEditor.SourceEditorGutterAnnotation>
-    @nonobjc func unknow76() {}//SourceEditor`SourceEditor.SourceEditorView.gutterAnnotations.materializeForSet : Swift.Set<SourceEditor.SourceEditorGutterAnnotation>
-    @nonobjc func unknow77() {}
-    @nonobjc func unknow78() {}
-    @nonobjc func unknow79() {}
-    @nonobjc func unknow80() {}//SourceEditor`SourceEditor.SourceEditorView.registerDraggingExtension(SourceEditor.SourceEditorViewDraggingExtension, identifier: Swift.String) -> ()
-    @nonobjc func unknow81() {}//SourceEditor`SourceEditor.SourceEditorView.unregisterDraggingExtensionWith(identifier: Swift.String) -> ()
-    @nonobjc func unknow82() {}
-    @nonobjc func unknow83() {}//SourceEditor`SourceEditor.SourceEditorView.textFindableDisplay.getter : SourceEditor.TextFindableDisplay
-    @nonobjc func unknow84() {}//SourceEditor`SourceEditor.SourceEditorView.textFindableDisplay.setter : SourceEditor.TextFindableDisplay
-    @nonobjc func unknow85() {}//SourceEditor`SourceEditor.SourceEditorView.textFindableDisplay.materializeForSet : SourceEditor.TextFindableDisplay
-    @nonobjc func unknow86() {}//SourceEditor`SourceEditor.SourceEditorView.textFindPanel.getter : SourceEditor.TextFindPanel
-    @nonobjc func unknow87() {}//SourceEditor`SourceEditor.SourceEditorView.textFindPanel.setter : SourceEditor.TextFindPanel
-    @nonobjc func unknow88() {}//SourceEditor`SourceEditor.SourceEditorView.textFindPanel.materializeForSet : SourceEditor.TextFindPanel
-    @nonobjc func unknow89() {}//SourceEditor`SourceEditor.SourceEditorView.textFindPanelHost.getter : SourceEditor.TextFindPanelHost
-    @nonobjc func unknow90() {}//SourceEditor`SourceEditor.SourceEditorView.textFindPanelDisplayed.getter : Swift.Bool
-    @nonobjc func unknow91() {}
-    @nonobjc func unknow92() {}
-    @nonobjc func unknow93() {}//SourceEditor`SourceEditor.SourceEditorView.findQuery.getter : SourceEditor.TextFindQuery
-    @nonobjc func unknow94() {}//SourceEditor`SourceEditor.SourceEditorView.findQuery.setter : SourceEditor.TextFindQuery
-    @nonobjc func unknow95() {}//SourceEditor`SourceEditor.SourceEditorView.findQuery.materializeForSet : SourceEditor.TextFindQuery
-    @nonobjc func unknow96() {}//SourceEditor`SourceEditor.SourceEditorView.findResult.getter : Swift.Optional<SourceEditor.TextFindResult>
-    @nonobjc func unknow97() {}//SourceEditor`SourceEditor.SourceEditorView.findResult.setter : Swift.Optional<SourceEditor.TextFindResult>
-    @nonobjc func unknow98() {}//SourceEditor`SourceEditor.SourceEditorView.findResult.materializeForSet : Swift.Optional<SourceEditor.TextFindResult>
-    @nonobjc func unknow99() {}//SourceEditor`SourceEditor.SourceEditorView.findReplaceWith.getter : Swift.Optional<SourceEditor.TextFindValue>
-    @nonobjc func unknowa0() {}//SourceEditor`SourceEditor.SourceEditorView.findReplaceWith.setter : Swift.Optional<SourceEditor.TextFindValue>
-    @nonobjc func unknowa1() {}//SourceEditor`SourceEditor.SourceEditorView.findReplaceWith.materializeForSet : Swift.Optional<SourceEditor.TextFindValue>
-    @nonobjc func unknowa2() {}//SourceEditor`SourceEditor.SourceEditorView.findResultNeedUpdate.getter : Swift.Bool
-    @nonobjc func unknowa3() {}//SourceEditor`SourceEditor.SourceEditorView.findResultNeedUpdate.setter : Swift.Bool
-    @nonobjc func unknowa4() {}//SourceEditor`SourceEditor.SourceEditorView.findResultNeedUpdate.materializeForSet : Swift.Bool
-    @nonobjc func unknowa5() {}
-    @nonobjc func unknowa6() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.pullFindConfigurationForFindQuery() -> ()
-    @nonobjc func unknowa7() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.pushFindConfigurationForFindQuery() -> ()
-    @nonobjc func unknowa8() {}//SourceEditor`SourceEditor.SourceEditorView.findPanelTopAnchor.getter : __ObjC.NSLayoutYAxisAnchor
-    @nonobjc func unknowa9() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.present(SourceEditor.TextFindPanel) -> ()
-    @nonobjc func unknowb0() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.dismiss(SourceEditor.TextFindPanel) -> ()
-    @nonobjc func unknowb1() {}//SourceEditor`SourceEditor.SourceEditorView.selectedSymbolHighlightDelay.getter : Swift.Optional<Swift.Double>
-    @nonobjc func unknowb2() {}//SourceEditor`SourceEditor.SourceEditorView.selectedSymbolHighlightDelay.setter : Swift.Optional<Swift.Double>
-    @nonobjc func unknowb3() {}//SourceEditor`SourceEditor.SourceEditorView.selectedSymbolHighlightDelay.materializeForSet : Swift.Optional<Swift.Double>
-    @nonobjc func unknowb4() {}
-    @nonobjc func unknowb5() {}
-    @nonobjc func unknowb6() {}
-    @nonobjc func unknowb7() {}
-    @nonobjc func unknowb8() {}
-    @nonobjc func unknowb9() {}
-    @nonobjc func unknowc0() {}//SourceEditor`SourceEditor.SourceEditorView.delimiterHighlightEnabled.getter : Swift.Bool
-    @nonobjc func unknowc1() {}//SourceEditor`SourceEditor.SourceEditorView.delimiterHighlightEnabled.setter : Swift.Bool
-    @nonobjc func unknowc2() {}//SourceEditor`SourceEditor.SourceEditorView.delimiterHighlightEnabled.materializeForSet : Swift.Bool
-    @nonobjc func unknowc3() {}//SourceEditor`SourceEditor.SourceEditorView.coverageLayoutVisualization.getter : Swift.Optional<SourceEditor.CodeCoverageVisualization>
-    @nonobjc func unknowc4() {}//SourceEditor`SourceEditor.SourceEditorView.coverageLayoutVisualization.setter : Swift.Optional<SourceEditor.CodeCoverageVisualization
-    @nonobjc func unknowc5() {}//SourceEditor`SourceEditor.SourceEditorView.coverageLayoutVisualization.materializeForSet : Swift.Optional<SourceEditor.CodeCoverageVisualization>
-    @nonobjc func unknowc6() {}//SourceEditor`SourceEditor.SourceEditorView.isEditingEnabled.getter : Swift.Bool
-    @nonobjc func unknowc7() {}//SourceEditor`SourceEditor.SourceEditorView.isEditingEnabled.setter : Swift.Bool
-    @nonobjc func unknowc8() {}//SourceEditor`SourceEditor.SourceEditorView.isEditingEnabled.materializeForSet : Swift.Bool
-    @nonobjc func unknowc9() {}
-    @nonobjc func unknowd0() {}
-    @nonobjc func unknowd1() {}
-    @nonobjc func unknowd2() {}//SourceEditor`SourceEditor.SourceEditorView.clearSelectionAnchors() -> ())
-    @nonobjc func selection() -> SourceEditorSelection? { fatalError() }//SourceEditor`SourceEditor.SourceEditorView.selection.getter : Swift.Optional<SourceEditor.SourceEditorSelection>
-    @nonobjc func unknowd4() {}
-    @nonobjc func unknowd5() {}
-    @nonobjc func unknowd6() {}//SourceEditor`SourceEditor.SourceEditorView.setSelectedRange(SourceEditor.SourceEditorRange, modifiers: SourceEditor.SourceEditorSelectionModifiers) -> ()
-    @nonobjc func unknowd7() {}//SourceEditor`SourceEditor.SourceEditorView.setSelectedRanges(Swift.Array<SourceEditor.SourceEditorRange>, modifiers: SourceEditor.SourceEditorSelectionModifiers) -> ()
-    @nonobjc func unknowd8() {}//SourceEditor`SourceEditor.SourceEditorView.addSelectedRange(SourceEditor.SourceEditorRange, modifiers: SourceEditor.SourceEditorSelectionModifiers) -> ()
-    @nonobjc func unknowd9() {}//SourceEditor`SourceEditor.SourceEditorView.addSelectedRanges(Swift.Array<SourceEditor.SourceEditorRange>, modifiers: SourceEditor.SourceEditorSelectionModifiers) -> ()
-    @nonobjc func unknowe0() {}
-    @nonobjc func unknowe1() {}
-    @nonobjc func unknowe2() {}//SourceEditor`SourceEditor.SourceEditorView.selectedSourceRange.getter : Swift.Optional<SourceEditor.SourceEditorRange>
-    @nonobjc func unknowe3() {}//SourceEditor`SourceEditor.SourceEditorView.drawableSelectedSourceRanges.getter : Swift.Array<SourceEditor.SourceEditorRange>
-    @nonobjc func unknowe4() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.selectionWillChange() -> ()
-    @nonobjc func unknowe5() {}
-    @nonobjc func unknowe6() {}
-    @nonobjc func unknowe7() {}
-    @nonobjc func unknowe8() {}//IDEPegasusSourceEditor`IDEPegasusSourceEditor.SourceCodeEditorView.selectionDidChange(from: Swift.Optional<SourceEditor.SourceEditorSelection>) -> ()
-    @nonobjc func unknowe9() {}//SourceEditor`SourceEditor.SourceEditorView.(calloutVisualization in _21FB12A7D498BCC8AE8B7D65E086EAF9).getter : SourceEditor.RangePopLayoutVisualization
-    @nonobjc func unknowf0() {}
-    @nonobjc func unknowf1() {}
-    @nonobjc func unknowf2() {}//SourceEditor`SourceEditor.SourceEditorView.showCallout(for: SourceEditor.SourceEditorRange) -> ()
-    @nonobjc func unknowf3() {}//SourceEditor`SourceEditor.SourceEditorView.escapeKeyTriggersCodeCompletion.getter : Swift.Bool
-    @nonobjc func unknowf4() {}//SourceEditor`SourceEditor.SourceEditorView.isShowingCodeCompletion.getter : Swift.Bool
-    @nonobjc func unknowf5() {}//SourceEditor`SourceEditor.SourceEditorView.isCodeCompletionEnabled.getter : Swift.Bool
-    @nonobjc func unknowf6() {}//SourceEditor`SourceEditor.SourceEditorView.isCodeCompletionEnabled.setter : Swift.Bool
-    @nonobjc func unknowf7() {}//SourceEditor`SourceEditor.SourceEditorView.isCodeCompletionEnabled.materializeForSet : Swift.Bool
-    @nonobjc func unknowf8() {}
-    @nonobjc func unknowf9() {}
+    
+    @NSManaged var scrollView: NSScrollView // SourceEditor.SourceEditorScrollView
+    @NSManaged var contentView: SourceEditorContentView // SourceEditor.SourceEditorContentView
+    
+    //    @objc dynamic func xvim_keyUp(_ event: NSEvent) {
+    //        return self.xvim_window.map {
+    //            return $0.xvim_keyUp(event).map {
+    //                return self.xvim_keyUp($0)
+    //            }
+    //        } ?? self.xvim_keyUp(event)
+    //    }
+    //
+//    @objc dynamic func xvim_keyDown(_ event: NSEvent) {
+//        return self.xvim_window.map {
+//            return $0.keyDown(event).map {
+//                return self.xvim_keyDown($0)
+//            }
+//            } ?? self.xvim_keyDown(event)
+//    }
+
+    //SourceEditor`SourceEditor.SourceEditorView.selectTextRange(Swift.Optional<SourceEditor.SourceEditorRange>, scrollPlacement: Swift.Optional<SourceEditor.ScrollPlacement>, alwaysScroll: Swift.Bool) -> ():
+    //SourceEditor.SourceEditorView.insertTexts(Swift.Array<Swift.String>, replacementRanges: Swift.Array<SourceEditor.SourceEditorRange>, options: SourceEditor.TextInsertionOptions) -> ()
 
     @objc dynamic func xvim_selectionDidChange(_ notification: Notification) {
         guard let window = xvim_window else {
@@ -389,24 +539,36 @@ internal class SourceEditorView: NSView {
 //        @_silgen_name("_XNeovim_sxx_setter")
 //        @_silgen_name("_XNeovim_sxx_getter")
         
-        let selection = contentView.accessibilitySelectedTextRange()
-        let start = selection.lowerBound
-        //let end = selection.upperBound
+        selection().map {
+            switch $0 {
+            case .single(let range, let modifiers):
+                let startRow = range.start.line
+                let startColumn = range.start.col
+                
+                window.selection = .init(cursor: .init(row: startRow + 1, column: startColumn))
+                
+                logger.debug?.write(range, modifiers)
 
-        guard start != NSNotFound else {
-            return
+            case .multiple(let ranges, let modifiers):
+                
+                logger.debug?.write(ranges, modifiers)
+            }
         }
         
-        self.selection().map {
-            logger.debug?.write($0)
-        }
-
-        let startRow = contentView.accessibilityLine(for: start)
-        let startRange = contentView.accessibilityRange(forLine: startRow)
-        let startColumn = max(min(start - startRange.lowerBound, startRange.length - 2), 0)
+//        let selection = contentView.accessibilitySelectedTextRange()
+//        let start = selection.lowerBound
+//        //let end = selection.upperBound
+//
+//        guard start != NSNotFound else {
+//            return
+//        }
+//
+//        let startRow = contentView.accessibilityLine(for: start)
+//        let startRange = contentView.accessibilityRange(forLine: startRow)
+//        let startColumn = max(min(start - startRange.lowerBound, startRange.length - 2), 0)
 
         // update
-        window.selection = .init(cursor: .init(row: startRow + 1, column: startColumn))
+        //window.selection = .init(cursor: .init(row: startRow + 1, column: startColumn))
         
 //        logger.debug?.write(notification)
 //        logger.debug?.write(contentView.accessibilitySelectedTextRanges())
