@@ -520,13 +520,13 @@ internal class SourceEditorView: NSView {
     //        } ?? self.xvim_keyUp(event)
     //    }
     //
-//    @objc dynamic func xvim_keyDown(_ event: NSEvent) {
-//        return self.xvim_window.map {
-//            return $0.keyDown(event).map {
-//                return self.xvim_keyDown($0)
-//            }
-//            } ?? self.xvim_keyDown(event)
-//    }
+    @objc dynamic func xvim_keyDown(_ event: NSEvent) {
+        return self.xvim_window.map {
+            return $0.keyDown(event).map {
+                return self.xvim_keyDown($0)
+            }
+        } ?? self.xvim_keyDown(event)
+    }
 
     //SourceEditor`SourceEditor.SourceEditorView.selectTextRange(Swift.Optional<SourceEditor.SourceEditorRange>, scrollPlacement: Swift.Optional<SourceEditor.ScrollPlacement>, alwaysScroll: Swift.Bool) -> ():
     //SourceEditor.SourceEditorView.insertTexts(Swift.Array<Swift.String>, replacementRanges: Swift.Array<SourceEditor.SourceEditorRange>, options: SourceEditor.TextInsertionOptions) -> ()

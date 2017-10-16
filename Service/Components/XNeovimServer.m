@@ -226,7 +226,7 @@ static void server_ui_eol_clear(UI *ui __unused) {
 }
 
 static void server_ui_cursor_goto(UI *ui __unused, Integer row, Integer col) {
-//    NSLog(@"%s %zd, %zd", __func__, curwin->w_cursor.lnum, curwin->w_cursor.col);
+    //NSLog(@"%s %zd:%zd %zd:%zd", __func__, curwin->w_cursor.lnum, curwin->w_cursor.col, row, col);
     
     //    _put_row = row;
     //    _put_column = col;
@@ -508,6 +508,23 @@ void custom_ui_start(void) {
 }
 
 // called by neovim
+void custom_ui_buf_changed(linenr_T lnum, colnr_T col, linenr_T lnume, long xtra) {
+    // Can't read buf for deleted line
+    if (xtra < 0) {
+        NSLog(@"%s %zd:%zd/%zd => %zd", __func__, lnum, col, lnume, xtra);
+        
+
+        
+        return;
+    }
+    char_u* ptr = ml_get_buf(curbuf, lnum, 0);
+    NSLog(@"%s %zd:%zd/%zd => %zd => %s", __func__, lnum, col, lnume, xtra, ptr);
+    
+    
+    //[XNeovimServer.shared.view updateSelection:selection];
+}
+
+// called by neovim
 void custom_ui_autocmds_groups(event_T event,
                                char_u *fname __unused,
                                char_u *fname_io __unused,
@@ -518,7 +535,8 @@ void custom_ui_autocmds_groups(event_T event,
 
     // text change
     if (event == EVENT_TEXTCHANGED || event == EVENT_TEXTCHANGEDI) {
-        NSLog(@"%s %d -> %zd:\"%s\"", __FUNCTION__, event, buf->b_ml.ml_line_lnum, buf->b_ml.ml_line_ptr);
+//        char_u* ptr = ml_get_buf(curbuf, buf->b_ml.ml_line_lnum, 0);
+//        NSLog(@"%s %d -> %zd:\"%s\"", __FUNCTION__, event,  buf->b_ml.ml_line_lnum, ptr);
         return;
     }
     
@@ -528,7 +546,9 @@ void custom_ui_autocmds_groups(event_T event,
         case EVENT_CURSORMOVEDI: {
             // Because the col index base of utf8, need to be convert to unicode
             NSInteger row = (NSInteger)curwin->w_cursor.lnum;
-            NSInteger column = (NSInteger)mb_charlen_len(curbuf->b_ml.ml_line_ptr, curwin->w_cursor.col);
+            NSInteger column = (NSInteger)curwin->w_cursor.col;//mb_charlen_len(curbuf->b_ml.ml_line_ptr, curwin->w_cursor.col);
+            
+            //char_u* ptr = ml_get_buf(curbuf, (linenr_T)row, 0);
             
             XNeovimServerPosition* start = [XNeovimServerPosition positionWithRow:row column:column];
             XNeovimServerSelection* selection = [XNeovimServerSelection selectionWithStart:start end:start];

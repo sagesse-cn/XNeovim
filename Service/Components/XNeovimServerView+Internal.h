@@ -39,4 +39,6 @@
 - (void)updateSelection:(XNeovimServerSelection*)selection;
 - (void)updateMode:(NSInteger)mode;
 
+- (void)setText:(NSString*)text range:(XNeovimServerSelection*)range;
+
 @end

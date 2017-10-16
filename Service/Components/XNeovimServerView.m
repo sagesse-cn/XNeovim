@@ -56,6 +56,9 @@
     [XNeovimServer.shared setSelection:selection];
 }
 
+- (void)setText:(NSString*)text range:(XNeovimServerSelection*)range {
+}
+
 - (void)updateSelection:(XNeovimServerSelection*)selection {
     _selection = selection;
     

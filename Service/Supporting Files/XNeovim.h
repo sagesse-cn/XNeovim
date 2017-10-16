@@ -32,6 +32,8 @@
 #import <nvim/syntax.h>
 #import <nvim/api/window.h>
 
+#import <nvim/memline.h>
+
 #import <nvim/vim.h>
 #import <nvim/main.h>
 
